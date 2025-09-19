@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+ <style>
+    h1{
+        color: green;
+    }
+     h1::before{
+        content: '❀';
+     }
+     h1::after{
+         content: '❀';
+     }
+     #first::first-line{
+        background-color: gray;
+     }
+
+
+     #first::selection{
+        background-color: aqua;
+     }
+     #sec::first-letter{
+        color: yellow;
+        font-size: 3em;
+     }
+ </style>
+</head>
+<body>
+    <h1>Welcome to App</h1>
+    <p id="first">Lorem ipsum dolor sit amet consectetur<br> adipisicing elit. Animi necessitatibus fugiat sed aperiam sequi fuga odit dolor. Dignissimos possimus tempore, nobis eius alias, reiciendis eveniet similique adipisci aperiam id maiores?
+
+    </p>
+    <p id="sec">Tops Tech</p>
+</body>
+</html>

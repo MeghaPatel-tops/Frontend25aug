@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        p{
+            text-transform:lowercase;
+        }
+        div p{
+            height: 100px;
+            width: 200px;
+            border:1px solid black;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        #third{
+            width: 300px;
+            height: 500px;
+            border: 5px solid green;
+            color: blue;
+            writing-mode: vertical-rl;
+            text-orientation:upright;
+        }
+
+        #forth{
+            text-indent: 50px;
+        }
+      
+    </style>
+</head>
+<body>
+    <h1> text-transform:lowercase;</h1>
+     <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex adipisci placeat reiciendis totam est? Ut laboriosam nemo, iure qui nostrum odio ea laborum dolores atque quas debitis sint sed doloribus?</p>
+
+     <h1> text-overflow: ellipsis;</h1>
+     <div>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi eaque harum fugiat officia minus ad iusto vero, sunt incidunt voluptatibus rem nisi totam, a, magni eveniet sed magnam tempora consequuntur!</p>
+     </div>
+
+     <h1> text-orientation:upright;</h1>
+     <h2>Note: set this property first :writing-mode: vertical-rl;</h2>
+     <p id="third">
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veritatis rerum quo quisquam pariatur! Beatae laboriosam voluptates fuga commodi at amet facilis nostrum fugiat veniam? Odit dolorem eveniet expedita necessitatibus odio!
+     </p>
+     <p id="forth">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora dolorem, cupiditate, et sed assumenda consequatur tempore magni iusto fuga ratione necessitatibus delectus qui rem, molestias explicabo ea consectetur minima atque!
+
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. In, excepturi magni. Quasi minima laudantium tenetur? Accusantium porro quisquam facilis perspiciatis soluta. Modi illum doloribus expedita odio obcaecati ipsam accusamus. Magnam?
+     </p>
+</body>
+</html>
