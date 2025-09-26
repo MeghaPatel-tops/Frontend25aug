@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .main{
+            background-color:aqua;
+            padding: 10px;
+            gap:10px;
+            display: grid;
+            grid-template-areas:'header header header header header header'
+                       'aside center center center  center right'
+                       'footer footer footer footer footer footer ';
+        }
+        .header{
+            text-align: center;
+            padding: 20px;
+            grid-area: header;
+            background-color: yellow;
+        }
+        .aside{
+            grid-area: aside;
+            background-color: orange;
+            height: 400px;
+        }
+        
+         .content{
+            grid-area: center;
+            background-color: rgba(119, 164, 4, 0.8);
+            height: 400px;
+            display: flex;
+            align-items: end;
+            justify-content: center;
+        }
+        .right{
+            grid-area: right;
+            background-color: rgba(164, 4, 143, 0.8);
+            height: 400px;
+        }
+        .footer{
+            grid-area: footer;
+            padding: 20px;
+            background-color: rgba(33, 4, 164, 0.8);
+           
+        }
+        .inner{
+            width: 100%;
+            height: 200px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+        }
+        .box{
+            padding: 20px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="header">
+            Header
+        </div>
+        <div class="aside">aside</div>
+        <div class="content">
+            <div class="inner">
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+            </div>
+        </div>
+        <div class="right">right</div>
+        <div class="footer">Footer</div>
+    </div>
+</body>
+</html>

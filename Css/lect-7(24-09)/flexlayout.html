@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .main{
+            width: 100%;
+            height: auto;
+            border: 10px solid black;
+        }
+        .header{
+            text-align: center;
+            padding: 50px;
+            background-color: aqua;
+        }
+        .sec{
+            display: flex;
+            
+        }
+        .aside{
+            flex-grow: 1;
+            height: 400px;
+            background-color: lightgreen;
+        }
+        .content{
+            flex-grow: 5;
+            height: 400px;
+            background-color: lightyellow;
+        }
+         .right{
+            flex-grow: 1;
+            height: 400px;
+            background-color: lightgreen;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="header">Header</div>
+        <div class="sec">
+            <div class="aside">Aside</div>
+            <div class="content">Content</div>
+            <div class="right">Advertise</div>
+        </div>
+        <div class="header">Footer</div>
+    </div>
+</body>
+</html>
