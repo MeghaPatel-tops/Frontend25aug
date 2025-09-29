@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .conatiner{
+            height: 100px;
+            width: 100%;
+            border: 2px solid black;
+            position: relative;
+           
+        }
+        .header{
+            width: 100%;
+            padding: 10px;
+            text-align: center;
+            background-color:aqua;
+            position: sticky;
+            top: 0px;
+            z-index: 1;
+        }
+        .inner{
+            height: 50px ;
+            width: 50px;
+            background-color: blue;
+            position: absolute;
+            top :50%;
+            left:50%;
+
+        }
+        .dummy{
+            position: relative;
+            height: 400px;
+            width: 100%;
+            background-color: gray;
+            margin: 10px;
+        }
+        .adv{
+            height: 300px;
+            width: 300px;
+            border: 3px solid blue;
+            position: fixed;
+            top: 200px;
+            right: 0;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="conatiner">
+            <!-- <h1>position: relative; Example</h1> -->
+            <div class="inner">
+
+            </div>
+    </div>
+    <div class="header">
+        <h1> Sticy Navbar Example</h1>
+    </div>
+
+    <div class="adv">
+        adv 
+    </div>
+    <div class="dummy"></div>
+     <div class="dummy"></div>
+      <div class="dummy"></div>
+       <div class="dummy"></div>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            height: 600px;
+            width: 100%;
+            position: relative;
+            border: 1px solid black;
+        }
+        .container img{
+            height: 100%;
+            width: 100%;
+            opacity: 0.8;
+        }
+        .div-text{
+            position: absolute;
+            top:300px;
+            left: 40%;
+        }
+        .div-text img{
+            height: 100px;
+            width: 100px;
+        }
+        .header{
+            background-color: black;
+            padding: 20px;
+            
+        }
+        a{
+            color: white;
+            text-decoration: none;
+        }
+        .header li{
+            width: 100px;
+            display: inline-block;
+            /* padding: 20px; */
+            text-align: center;
+            /* border: 1px solid white; */
+        }
+        .dropdown{
+            position: relative;
+        }
+        .dropdown:hover .drop-menu{
+            display: block;
+        }
+        .drop-menu{
+             display: none;
+            position: absolute;
+            left: -50px;
+            z-index: 1;
+           
+        }
+        .drop-menu li{
+            background-color: black;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <nav>
+            <ul>
+                <li><a href="">item-1</a></li>
+                <li><a href="">item-2</a></li>
+                <li><a href="">item-3</a></li>
+                <li><a href="">item-4</a></li>
+                <li class="dropdown"><a href="">item-5</a>
+                    <ul class="drop-menu">
+                        <li><a href="">sub item -1</a></li>
+                        <li><a href="">sub item -2</a></li>
+                        <li><a href="">sub item -3</a></li>
+                        <li><a href="">sub item -4</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="container">
+        <img src="back.jpg" alt="">
+        <div class="div-text">
+               <h1>Delicius  Food</h1>
+               <img src="img1.png" alt="">
+        </div>
+    </div>
+</body>
+</html>
