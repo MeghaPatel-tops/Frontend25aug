@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            height: 100px;
+            width: 100px;
+            background-color: red;
+            margin: 50px;
+        }
+        #box-1:hover{
+            transform: translateX(100px);
+        }
+        #box-2:hover{
+            transform: rotate(30deg);
+        }
+        #box-3:hover{
+            transform: scale(0.5);
+        }
+        #box-4:hover{
+            transform: skew(30deg);
+        }
+         #box-5:hover{
+            transform: matrix(0.4, 0, 0.5, 1.2, 60, 10);
+        }
+         #box-6:hover{
+             transform-style: preserve-3d;
+        }
+    </style>
+</head>
+<body>
+    <div class="box" id="box-1"></div>
+    <div class="box" id="box-2"></div>
+    <div class="box" id="box-3"></div>
+    <div class="box" id="box-4"></div>
+      <div class="box" id="box-5"></div>
+      <div class="box" id="box-6"></div>
+</body>
+</html>

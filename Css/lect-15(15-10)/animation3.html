@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+        }
+        .outer{
+            height: 400px;
+            width: 400px;
+            border: 10px solid black;
+        }
+        .inner{
+            height: 100px;
+            width: 100px;
+            background-color: red;
+            animation-name: objMove;
+            animation-duration: 4s;
+            animation-delay: 2s;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes objMove {
+            25%{
+                transform: translate(300px,0px);
+            }
+             50%{
+                transform: translate(300px,300px);
+            }
+             75%{
+                transform: translate(0px,300px);
+            }
+             100%{
+                transform: translate(0px,0px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="inner"></div>
+    </div>
+</body>
+</html>

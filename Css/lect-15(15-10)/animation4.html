@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            padding: 100px;
+            display: flex;
+            justify-content: center;
+        }
+        .outer{
+            position: relative;
+            height: 400px;
+            width: 400px;
+            border: 10px solid black;
+            border-radius: 50%;
+             animation-name: objMove;
+            animation-duration: 4s;
+            animation-delay: 2s;
+            animation-direction: normal;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+        }
+        .inner{
+            height: 100px;
+            width: 200px;
+            background-image: url(newcar.png);
+            background-size: cover;
+            background-repeat: no-repeat;
+            transform: rotate(-25deg);
+            position: absolute;
+            top: -70px;
+
+        }
+
+        @keyframes objMove {
+           from{
+              transform: rotate(0deg);
+           }
+           to{
+                transform: rotate(360deg);
+           }
+        }
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="inner"></div>
+    </div>
+</body>
+</html>

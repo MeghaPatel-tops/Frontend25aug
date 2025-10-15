@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .main{
+            height: 500px;
+            width: 100%;
+            background-color: gray;
+            animation-name:backChange ;
+            animation-duration: 4s;
+            animation-delay: 2s;
+        }
+        .box{
+            height: 100px;
+            width: 100px;
+            background-color: brown;
+            animation-name: objectRotate;
+            animation-duration: 4s;
+            animation-delay: 2s;
+            animation-iteration-count: 5;
+            animation-direction: alternate-reverse;
+        }
+
+        @keyframes objectRotate {
+            25%{
+                transform: rotate(60deg);
+            }
+            50%{
+                transform: rotate(120deg);
+            }
+            75%{
+                transform: rotate(180deg);
+            }
+            100%{
+                transform: rotate(240deg);
+            }
+        }
+
+        @keyframes backChange {
+            from{
+                background-color: red;
+            }
+            to{
+                background-color: black;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- <div class="main">
+
+    </div> -->
+    <div class="box">
+
+    </div>
+</body>
+</html>
