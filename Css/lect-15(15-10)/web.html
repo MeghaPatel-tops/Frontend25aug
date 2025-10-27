@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .main{
+            height: 400px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url(back1.jpg);
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            animation-name: backChange,spin;
+            animation-delay: 4s;
+            animation-duration: 3s;
+            /* animation-timing-function: ease-in-out; */
+            animation-iteration-count: infinite;
+            transition: ease-in;
+        }
+        
+        @keyframes backChange{
+            0%{
+                background-image: url(back2.jpg);
+            
+            }
+            50%{
+                background-image: url(back3.jpg);
+            }
+            100%{
+                background-image: url(back1.jpg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+            <img src="download-removebg-preview.png" alt="">
+    </div>
+</body>
+</html>

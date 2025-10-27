@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .box1{
+            height: 300px;
+            width: 300px;
+            border: 10px solid black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .spindiv{
+            border-top: 2px solid black;
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+            animation-name: spin;
+            animation-duration: 4s;
+            animation-delay: 2s;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+        }
+        /* .circle{
+            height: 200px;
+            width: 200px;
+            border-radius: 50%;
+            border: 5px solid blue;
+            
+        } */
+        .inbox{
+            height: 10px;
+            width: 10px;
+            background-color: red;
+            border-radius: 50%;
+        }
+        @keyframes spin {
+            0%,50%,75%{
+                opacity: 0;
+            }
+            100%{
+                opacity: 1;
+            }
+        }
+        .box{
+              animation-name: spin;
+            animation-duration: 4s;
+            animation-delay: 2s;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+        }
+       .box:nth-child(1) { transform: rotate(0deg) translate(150px) rotate(0deg);
+        animation-delay: 1.20s;
+    }
+.box:nth-child(2) { transform: rotate(36deg) translate(150px) rotate(-36deg);
+animation-delay: 1.10s; }
+.box:nth-child(3) { transform: rotate(72deg) translate(150px) rotate(-72deg);
+animation-delay: 1.0s; }
+.box:nth-child(4) { transform: rotate(108deg) translate(150px) rotate(-108deg); 
+animation-delay: 0.90s;
+}
+.box:nth-child(5) { transform: rotate(144deg) translate(150px) rotate(-144deg);
+animation-delay: 0.80s; }
+.box:nth-child(6) { transform: rotate(180deg) translate(150px) rotate(-180deg); 
+animation-delay: 0.70s;}
+.box:nth-child(7) { transform: rotate(216deg) translate(150px) rotate(-216deg);
+animation-delay: 0.60s; }
+.box:nth-child(8) { transform: rotate(252deg) translate(150px) rotate(-252deg);
+animation-delay: 0.50s; }
+.box:nth-child(9) { transform: rotate(288deg) translate(150px) rotate(-288deg);
+animation-delay: 0.40s; }
+.box:nth-child(10) { transform: rotate(324deg) translate(150px) rotate(-324deg);
+animation-delay: 0.30s; }
+    </style>
+</head>
+<body>
+    <!-- <div class="box1">
+        <div class="spindiv">
+
+        </div>
+    </div> -->
+ 
+        <div class="circle">
+             <div class="inbox box" id="box-1"></div>
+             <div class="inbox box" id="box-2"></div>
+             <div class="inbox box" id="box-3"></div>
+             <div class="inbox box" id="box-4"></div>
+             <div class="inbox box" id="box-5"></div>
+             <div class="inbox box" id="box-6"></div>
+             <div class="inbox box" id="box-7"></div>
+             <div class="inbox box" id="box-8"></div>
+             <div class="inbox box" id="box-9"></div>
+             <div class="inbox box" id="box-10"></div>
+               
+        </div>
+         
+ 
+</body>
+</html>
