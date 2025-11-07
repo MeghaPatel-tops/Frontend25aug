@@ -62,5 +62,24 @@
     padding: 10px;
     border: none;
 }
+.blue-div img{
+   display: none;
+}
+.blue-content{
+    text-align: center;
+}
+.gallary-div{
+    padding: 100px;
+    background-color: rgb(247, 244, 244);
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    height: auto;
+    gap: 20px;
+}
+
+#img1{
+    grid-row:  1/span 1;
+    grid-column:  1/span 3;
+}
 
 }
