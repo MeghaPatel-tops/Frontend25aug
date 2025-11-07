@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .navbar{
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-direction: row;
+            
+        }
+        .navite{
+            padding: 20px;
+           
+            text-align: center;
+        }
+        .navite a{
+            color: white;
+            text-decoration: none;
+        }
+        @media screen and (max-width:765px){
+            .navbar{
+                flex-direction: column;
+            }
+            .navite{
+                border-bottom: 2px solid white;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+       <div class="navite">
+        <a href="">Item-1</a>
+    </div>
+       <div class="navite"><a href="">Item-2</a></div>
+       <div class="navite"><a href="">Item-3</a></div>
+       <div class="navite"><a href="">Item-4</a></div>
+       <div class="navite"><a href="">Item-5</a></div>
+    </div>
+</body>
+</html>
