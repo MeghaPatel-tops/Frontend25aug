@@ -1,0 +1,13 @@
+.main{
+    height: 600px;
+    background-image: url('images/banner-bg.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+.bannerh1{
+    font-size: 4em;
+}
+.hero{
+    height: 400px;
+    line-height: 4em;
+}

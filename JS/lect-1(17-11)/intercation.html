@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="alertExample()">Alert Example</button><br>
+    <button onclick="promptExample()">Prompt example</button><br>
+    <button onclick="confirmExample()" >Confirm example</button>
+
+    <script>
+        function alertExample(){
+            alert("Hello welcome to js tutorilas");
+        }
+
+        function promptExample(){
+            let name = prompt("Enter your name","HET");
+            alert(name)
+        }
+
+        function confirmExample(){
+            let res = confirm("Are you sure you want to exit???");
+            alert(res);
+        }
+    </script>
+</body>
+</html>
