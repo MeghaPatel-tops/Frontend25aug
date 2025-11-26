@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        .hero-div{
+            height: 500px;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+        .hero-div img{
+            height: 100%;
+            width: 100%;
+        }
+        #img-2{
+
+            display: none;
+        }
+         #img-3{
+            display: none;
+        }
+        .leftbtn{
+            position: absolute;
+            top: 250px;
+            left: 50px;
+        }
+        .rightbtn{
+            position: absolute;
+            top: 250px;
+            right: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-div">
+        <button onclick="moveLeft()" class="leftbtn">Left</button>
+        <button onclick="moveRight()" class="rightbtn">Right</button>
+        <img src="back-1.jpg" alt="" id="img-1">
+        <img src="back-2.jpg" alt="" id="img-2">
+        <img src="back-3.jpg" alt="" id="img-3">
+    </div>
+
+    <script>
+        let counter = 1;
+       function moveRight(){
+        
+        if(counter >=3){
+            
+            document.getElementById('img-3').style.display="block";
+        }
+        else{
+             document.getElementById('img-'+counter).style.display="none";
+           counter++;
+           
+        document.getElementById('img-'+counter).style.display="block";
+        }
+
+        
+       }
+
+       function moveLeft(){
+            if(counter <=1){
+                
+                 document.getElementById('img-1').style.display="block";
+            }
+             else{
+                document.getElementById('img-'+counter).style.display="none";
+           counter--;
+          
+        document.getElementById('img-'+counter).style.display="block";
+             }
+       }
+    </script>
+</body>
+</html>

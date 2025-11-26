@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <fieldset>
+        <h1>Even Odd Find</h1>
+        <input type="text" name="" id="num1">
+        <button onclick="evenoddFind()">Check</button>
+    </fieldset>
+     <fieldset>
+        <h1>Oqudrant Finder</h1>
+        <label for="">Enter x  axis</label>
+        <input type="text" name="" id="x">
+        <br><br>
+        <label for="">Enter y  axis</label>
+        <input type="text" name="" id="y">
+        <button onclick="quadrantFind()">Check</button>
+    </fieldset>
+     <fieldset>
+        <h1>Postive negative(using conditional operator)</h1>
+        <label for="">Enter number</label>
+        <input type="text" name="" id="num2">
+        <br><br>
+       
+        <button onclick="positivenegativeFind()">Check</button>
+    </fieldset>
+
+
+    <script>
+       
+       let user ;
+
+       let loggedUser = user ?? "test User";
+
+       console.log(loggedUser);
+       
+        
+        function evenoddFind(){
+            let num=document.getElementById('num1').value;
+
+            if(num%2 ==  0){
+                alert("Even Number");
+            }
+            else{
+                alert("Odd Number");
+            }
+        }
+
+    function quadrantFind(){
+            let x =document.getElementById('x').value;
+            let y = document.getElementById('y').value;
+
+            if(x > 0 && y>0){
+                alert("First");
+            }
+            else if(x<0 && y >0){
+                alert("sec")
+            }
+            else if(x<0 && y <0){
+                alert("third");
+            }
+            else if(x>0 && y<0){
+                alert("Forth");
+            }
+            else{
+                alert("Center");
+            }
+        }
+        function positivenegativeFind(){
+            let number1= document.getElementById('num2').value;
+            //(condition)?true:false
+            let msg = (number1>0)?"num is positive":"num is negative";
+            alert(msg)
+        }
+    </script>
+</body>
+</html>
