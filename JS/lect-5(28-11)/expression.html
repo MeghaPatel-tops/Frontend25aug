@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let printMsg = function (){
+            console.log("function as expression example");     
+        }
+        printMsg();
+
+        //callback example
+
+        function checkEvenOdd(even,odd){
+            let num = prompt("enter num");
+            if(num%2==0){
+                even(num)
+            }
+            else{
+                odd(num)
+            }
+        }
+
+        function evenPrint(num){
+            alert(`${num} is Even`);
+        }
+
+        function oddPrint(num){
+            alert(`${num} is Odd`);
+        }
+
+        checkEvenOdd(evenPrint,oddPrint)
+
+        //arrow function
+
+        let sum = (a,b)=>a+b;
+
+        console.log(sum(100,400));
+
+      let tesFunction = () =>{
+           console.log("arrow function example");
+           
+      }
+
+      tesFunction();
+        
+    </script>
+</body>
+</html>
