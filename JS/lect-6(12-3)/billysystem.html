@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .bill{
+            
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-top: 100px;
+            text-align: center;
+            display: none;
+            
+        }
+        .content{
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <fieldset>
+        <form method="post">
+            <label for="">Enter product name</label>
+            <input type="text" name="pname" id="pname">
+            <br><br>
+             <label for="">Enter product price</label>
+            <input type="text" name="price" id="price">
+            <br><br>
+             <label for="">Enter product qty</label>
+            <input type="text" name="qty" id="qty">
+            <br><br>
+            <input type="submit" value="Add" id="sub">
+            <button id="printbill">Print bill</button>
+        </form>
+
+    </fieldset>
+    <div class="bill" id="bill">
+        <div class="content">
+            <h1>Invoice</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>pname</th>
+                        <th>price</th>
+                        <th>qty</th>
+                        <th>subtotal</th>
+                    </tr>
+                </thead>
+                <tbody id="tbdy">
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        let billArray= [];
+        let pname = document.getElementById('pname');
+        let price = document.getElementById('price');
+        let qty = document.getElementById('qty');
+
+        const sub = document.getElementById('sub');
+
+        
+        sub.addEventListener('click',function(e){
+            e.preventDefault();
+            alert("form submitted");
+            let product = {
+                productname:pname.value,
+                Pprice:price.value,
+                Pqty:qty.value
+            }
+            
+            billArray.push(product)
+            console.log(billArray);
+            pname.value="";
+            price.value="";
+            qty.value="";
+        })
+
+        document.getElementById('printbill').addEventListener('click',function(e){
+             e.preventDefault();
+             document.getElementById('bill').style.display="flex"
+            let str="";
+            let total=0;
+            for(i=0;i<billArray.length;i++){
+                console.log(billArray[i]);
+                   total+=(billArray[i].Pqty* billArray[i].Pprice)
+                    str+=`
+                    <tr>
+                        <td>${billArray[i].productname}</td>
+                        <td>${billArray[i].Pprice}</td>
+                        <td>${billArray[i].Pqty}</td>
+                        <td>${billArray[i].Pqty* billArray[i].Pprice}</td>
+                    </tr>
+                    `
+            }
+            str+=`  <tr>
+                        <th>Total:${total}</th>
+                       
+                    </tr>`
+            document.getElementById('tbdy').innerHTML=str;
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   <style>
+    .box{
+        height: 100px;
+        width: 100px;
+    }
+   </style>
+</head>
+<body>
+    <h1>Welcome to tops tech</h1>
+    <p id="first"> repellendus excepturi porro vero qui amet consectetur esse dolor alias adipisci.</p>
+    <button onclick="changeText()">Change text</button>
+     <p id="first">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, iusto accusamus porro eum itaque repellendus et ipsa amet? Corrupti repellendus excepturi porro vero qui amet consectetur esse dolor alias adipisci.</p>
+      <p id="first">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, iusto accusamus porro eum itaque repellendus et ipsa amet? Corrupti repellendus excepturi porro vero qui amet consectetur esse dolor alias adipisci.</p>
+
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+
+    <div></div>
+
+    <script>
+        const p1 = document.getElementById('first');
+        console.log(p1);
+
+        const BoxArray = document.getElementsByClassName('box');
+        console.log(BoxArray);
+
+        for(i=0;i<BoxArray.length;i++){
+                console.log(BoxArray[i]);
+                
+        }
+
+        const heading = document.getElementsByTagName('h1');
+        console.log(heading);
+
+        const firstP= document.querySelectorAll('p');
+        console.log(firstP);
+        
+
+        function changeText(){
+            p1.textContent="test saa"
+        }
+        
+        
+        
+    </script>
+</body>
+</html>
