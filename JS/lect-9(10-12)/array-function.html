@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        let fruits = ['apple','kiwi','orange'];
+        console.log(fruits);
+
+        //adding new array element at end
+        fruits.push('graps');
+        console.log(fruits);
+
+        //remove an array element from end
+        fruits.pop();
+        console.log(fruits);
+        
+        //adding new array element at start
+        fruits.unshift('Watermallon');
+          console.log(fruits);
+
+         //remove array element from start
+         fruits.shift();
+         console.log(fruits);
+          
+
+         fruits.forEach((item,index)=>{
+            console.log(index);
+            console.log(item);
+            
+         })
+
+         console.log(fruits.indexOf("kiw"));
+
+         let num=[22,3,4,5,66,7,2,4,33,91,67];
+
+         let evenArray = num.filter((item,index)=>{
+               if(item%2==0){
+                return item;
+               }
+         })
+
+         console.log(evenArray);
+         
+         
+        
+        
+    </script>
+</body>
+</html>

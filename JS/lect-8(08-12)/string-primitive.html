@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+        let name = "megha";
+        console.log(name.toUpperCase());
+        console.log("strlen",name.length);
+        console.log("first char",name[name.length-1]);
+
+        let newName= name[1]='t';
+        console.log(newName);
+
+        let str = 'As sly as a fox, as strong as an ox';
+
+        let pos=0;
+        let target = "as";
+        let counter = 0;
+
+        while(true){
+            let foundPos = str.indexOf(target,pos);
+            console.log(foundPos);
+            if (foundPos == -1) break;
+            counter++;
+
+            pos = foundPos+1;
+            
+        }
+
+        console.log("as word found in time:",counter);
+        
+        
+        function isplain(str){
+            let s = str.toLowerCase();
+            console.log(s.split("").reverse().join(""));
+            
+           return s === s.split("").reverse().join("");
+            
+            
+        }
+         if(!isplain("abcbxxxxa")){
+            console.log("not palindrom");
+            
+         }
+         else{
+            console.log("palindrome");
+            
+         }
+        
+
+    </script>
+</body>
+</html>

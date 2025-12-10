@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+        let longNum = 1e9;
+        console.log( longNum == 1000000000);
+
+        let val=3.6;
+
+       // console.log(Math.floor(val));
+       //console.log(Math.ceil(val));
+       console.log(Math.round(val));
+
+       let sum = 0.1 + 0.2;
+       console.log(sum.toFixed(3));
+
+       //alert( isFinite(1e500 ) );
+
+       let x=10;
+       let y = 3;
+       let z= x/y;
+       console.log("z=",parseInt(z));
+       
+       let num1 = prompt("Enter num");
+        num1 = parseInt(num1);
+
+        let rem,rev=0;
+        while(num1!=0){
+            rem = num1%10;
+            rev= rev*10+rem;
+            num1 = parseInt(num1/10);
+        }
+       console.log("rev-",rev);
+       
+        
+        
+    </script>
+</body>
+</html>
