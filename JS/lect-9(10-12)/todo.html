@@ -9,12 +9,24 @@
     body{
         font-family: Arial, Helvetica, sans-serif;
         background-color: #f2f2f2;
+        display: flex;
         justify-content: center;
         align-items: center;
         height: 50vh;
+        flex-direction: column;
+    }
+    table{
+        border: 1px solid black;
+        padding: 10px 20px;
+    }
+    td,th{
+        border-bottom: 1px solid black;
+        padding: 10px;
     }
 </style>
 <body>
+
+
     <div class="container">
         <h2>My To Do List</h2>
         <input type="text" name="" id="taskAdd" placeholder="enter a task...">
@@ -53,7 +65,8 @@
                  <tr>
                 <td>${i}</td>
                 <td>${item}</td>
-                <td> <button onclick="editTask(${i})">Edit</button></td>
+                <td> <button onclick="editTask(${i})">Edit</button>
+                    <button onclick="deleteTask(${i})">DELETE</button></td>
             </tr>
                `
            })
@@ -73,6 +86,12 @@
         let id = document.getElementById('hiddenid').value;
         let val = document.getElementById('taskAdd').value;
         todo[id]=val;
+        printTodo();
+     }
+
+     function deleteTask(id){
+        alert(id)
+        todo.splice(id,1);
         printTodo();
      }
 
