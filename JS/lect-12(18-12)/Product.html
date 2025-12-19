@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <script>
+    class Category{
+        constructor(catname){
+            this.catname=catname
+            console.log("in cat class ",this.catname);
+            
+        }
+    }
+     class Product extends Category{
+        // constructor(){
+        //     console.log("default con called");
+            
+        // }
+        constructor(pname,price,cname){
+            super(cname)
+            this.pname=pname;
+            this.price=price;
+        }
+
+        showProduct(){
+            console.log("product name:",this.pname);
+            console.log("product price",this.price);
+            
+            
+        }
+    }
+
+    let p1 = new Product("laptop","21000","electronics");
+    p1.showProduct();
+
+   // let p2 = new Product
+
+   class Maths{
+        static s=0;
+        constructor(){
+            Maths.s++;
+        }
+        display(){
+            console.log("in display ",Maths.s);
+            
+        }
+   }
+
+
+
+   let m1 = new Maths();
+   let m2= new Maths();
+   let m3= new Maths();
+   let m4= new Maths();
+
+   m1.display();
+
+   console.log("count of ob=",Maths.s);
+   
+
+
+
+   </script>
+</body>
+</html>

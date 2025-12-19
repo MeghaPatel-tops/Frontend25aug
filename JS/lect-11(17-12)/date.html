@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .body{
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .box{
+            padding: 100px 200px;
+            font-size: 2em;
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+       <div class="box" id="box"></div>
+
+    <script>
+       
+        
+         function genTime(){
+             let todate = new Date();
+        console.log(todate);
+             //09-09-0000 h:i:s
+        // let dateStr = todate.getDate() +"-" +todate.getMonth()  + "-" + todate.getFullYear()+ " "+  todate.getHours() + ":" + todate.getMinutes() + ":" +todate.getSeconds();
+          let dateStr =`
+                ${ todate.getDate()}- ${ todate.getMonth()}- ${ todate.getFullYear()}   ${ todate.getHours()}:${ todate.getMinutes()}:${ todate.getSeconds()}
+          `
+        
+         
+           document.getElementById("box").innerHTML = dateStr;
+
+         }
+
+        // setTimeout(() => {
+        //     console.log("set timeout function called");
+            
+        // }, 1000);
+
+        setInterval(genTime,1000)
+        
+
+    </script>
+</body>
+</html>

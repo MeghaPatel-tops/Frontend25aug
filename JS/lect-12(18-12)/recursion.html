@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+        function factFind(num){//5   f = 5*f(4)   f= 5*4*f(3) f=5*4*3*f(2) f= 5*4*3*2*f(1)= 5*4*3*2
+            if(num==1){
+                return 1;
+            }
+            f= num*factFind(num-1)
+            return f;
+        }
+
+        console.log(factFind(5));
+
+        function sum(...nums){
+            let s=0;
+            for(num of nums){
+                console.log(num);
+                
+                s+=num;
+            }
+
+            console.log("addition=",s);
+            
+        }
+   
+        sum(1,2,3);
+        sum(100,347.987,87,989,676);
+        
+        
+    </script>
+</body>
+</html>

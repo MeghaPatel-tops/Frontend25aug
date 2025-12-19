@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let fruits=['apple','banana',"kiwi",'mango'];
+        let vegs =['potato','tomato']
+
+        let sliceFruits = fruits.slice(1,3);
+        console.log(sliceFruits);
+
+        let mixedArray = fruits.concat(vegs);
+
+        console.log(mixedArray);
+
+        console.log(fruits);
+
+        fruits.forEach((index,i)=>{
+            document.write(index)
+            document.write("<br>")
+        })
+
+        console.log(fruits.indexOf("kiwiuuulet"));
+
+        let product=[
+            {
+                pid:1,
+                pname:"Pressure cooker",
+                price:2100,
+                category:"home utility"
+            },
+             {
+                pid:1,
+                pname:"Water cooler",
+                price:21900,
+                category:"home utility"
+            },
+             {
+                pid:1,
+                pname:"mixure",
+                price:2100,
+                category:"Electoronic"
+            },
+            {
+                pid:1,
+                pname:"TV",
+                price:2100,
+                category:"Electoronic"
+            }
+            
+        ]
+
+        console.log(Object.keys(product[0]));
+         console.log(Object.values(product[0]));
+
+          console.log(Object.entries(product[0]));
+        
+        
+        function getPro(cat){
+            
+           let productFilter;
+            if(cat=="home"){
+                 productFilter = product.filter(index=>index.category=="home utility")
+                console.log(productFilter);
+                
+            }
+            else if(cat == "ele"){
+                  productFilter = product.filter(index=>index.category=="Electoronic")
+                  console.log(productFilter);
+            }
+            else{
+                productFilter=product
+            }
+            let str=""
+            productFilter.forEach((index)=>{
+                 str+=`<div class="product">
+            <h3>
+                    ${index.pname}
+            </h3>
+            <p><b> ${index.price}</b></p>
+        </div>`
+            })
+            document.getElementById('productdata').innerHTML=str;
+        }
+        
+
+         
+    </script>
+</head>
+<body>
+    <button onclick="getPro('home')">Home utility</button>
+    <button onclick="getPro('ele')">Electoronic</button>
+    <div class="resulyt" id="productdata">
+        
+    </div>
+</body>
+</html>

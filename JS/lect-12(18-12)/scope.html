@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        {
+            let m=10;
+            const pi=3.14;
+        }
+       // console.log(pi);
+
+        function display(){
+            {
+                var x=100;
+            }
+            console.log(x);
+            
+        }
+
+        function outerFunction(){
+            let m=100;
+
+            return function innerFunction(){
+                console.log("m=",m);
+                
+            }
+        }
+
+
+        let inFun = outerFunction();
+
+        inFun();
+        //console.log(inFun);
+        
+
+        
+        display();
+
+
+        //clouser function 
+      function CounterApp(){
+            let count=0;
+
+            return function incre(){
+                count++;
+                console.log(count);
+                
+            }
+      }
+
+      let inFun1= CounterApp();
+
+      inFun1();
+      inFun1();
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

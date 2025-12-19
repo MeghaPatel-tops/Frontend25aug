@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+        let user={
+            name:"Megha",
+            email:"m@example.com",
+            printData(){
+               console.log(this.name);
+               console.log(this.email);
+               
+               
+            }
+        }
+
+        user.printData();
+
+        function subject(scode,sname){
+            this.sub_code = scode;
+            this.sub_name=sname;
+
+            this.printSubject=function (){
+                console.log("subjectcode=",this.sub_code);
+                console.log("subjectname",this.sub_name);
+                
+                
+            }
+        }
+
+        let s1 = new subject("s101","php");
+        s1.printSubject();
+
+        let s2 = new subject("s103","python");
+        s2.printSubject();
+    </script>
+</body>
+</html>
