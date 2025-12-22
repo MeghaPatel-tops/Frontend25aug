@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+</head>
+<body>
+    <div class="container border p-2">
+        <p id="loadP"></p>
+        <p id="errorP"></p>
+        <div class="row d-flex gap-1" id="test">
+            
+        </div>
+    </div>    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+    <script>
+      
+        async function getProduct(){
+            let res= await fetch('https://fakestoreapi.com/products/');
+            let products = await res.json();
+            createCatalog(products);
+        }
+
+        function createCatalog(data){
+            str="";
+             data.map((index,i)=>{
+                 str+=`
+                  <div class="col-xl-3">
+                <div class="card" >
+                    <img src="${index.image}" class="card-img-top" alt="..." height="200px">
+                    <div class="card-body">
+                        <h5 class="card-title">${index.title.substring(1,15)}</h5>
+                        <h6>Price:${index.price}</h6>
+                       
+                        <a href="#" class="btn btn-primary">Add To cart</a>
+                    </div>
+                </div>
+            </div>
+                 `
+             })
+             document.getElementById("test").innerHTML=str;
+        }
+
+        getProduct();
+
+       
+    </script>
+</body>
+</html>

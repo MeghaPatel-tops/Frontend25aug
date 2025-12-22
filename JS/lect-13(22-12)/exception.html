@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+        function test(){
+            try {
+                let m=10;
+                console.log(m);
+                
+            } catch (error) {
+                console.log(error.name);
+                console.log(error.message);
+                
+                
+            }
+            finally{
+                console.log("finally bloack");
+                
+            }
+        }
+
+        test();
+        console.log("app running after error");
+
+
+        function bookMySeat(){
+            let age = prompt("Enter your age");
+            if(age < 18){
+                throw new Error("Age invalid- Not eligible");
+            }
+            alert("Your seat Booked!")
+        }
+
+        try {
+            bookMySeat()
+        } catch (error) {
+            alert(error.message)
+        }
+        
+    </script>
+</body>
+</html>
