@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+        }
+        .main{
+            border: 1px solid black;
+            padding: 20px 30px;
+            text-align: center;
+        }
+        table{
+            margin: 10px;
+            border:  1px solid black;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="main" id="main">
+        <h2>Hari Krishna Enterprice</h2>
+        <table>
+            <tr>
+                <th>
+                    Invoice no: <br>
+                    Date:
+                </th>
+                <td>
+                    IN1001010
+                    <br>
+                    24-12-2025
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <th>Srno</th>
+                <th>Item</th>
+                <th>Qty</th>
+                <th>Price</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Test</td>
+                <td>2</td>
+                <td>2100</td>
+            </tr>
+             <tr>
+                <td>1</td>
+                <td>Test</td>
+                <td>2</td>
+                <td>2100</td>
+            </tr>
+             <tr>
+                <td>1</td>
+                <td>Test</td>
+                <td>2</td>
+                <td>2100</td>
+            </tr>
+        </table>
+    </div>
+    <button onclick="genPDfDoc()">Export to pdf</button>
+
+    <script>
+        function genPDfDoc(){
+                let element = document.getElementById('main');
+                console.log(element);
+                
+                html2pdf(element, {
+        margin: 10,
+        filename: 'bill1.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    });
+}
+    </script>
+</body>
+</html>
