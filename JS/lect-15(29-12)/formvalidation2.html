@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .main{
+            padding: 100px;
+            display: flex;
+            justify-content: center;
+        }
+        #pwdErrorlog p{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <fieldset>
+            <legend>Registration Form</legend>
+              <form method="post" id="regform">
+                <table>
+                <tr >
+                    <th>Enter User Name</th>
+                    <td><input type="text" name="" id="username"></td>
+                   <td> <div id="userError">
+
+                    </div></td>
+                </tr>
+                <tr>
+                    <th>
+                        Enter Email
+                    </th>
+                    <td>
+                        <input type="text" name="" id="Email">
+                    </td>
+                   <td> <div id="emailError">
+                        
+                    </div></td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <input type="submit" value="Submit">
+                    </td>
+                </tr>
+                </table>
+              </form>
+        </fieldset>
+         <fieldset>
+            <legend>Registration Form</legend>
+              <form method="post" id="passwordValid">
+                <table>
+                <tr >
+                    <th>Enter User Name</th>
+                    <td><input type="password" name="" id="pwd">
+                    <input type="checkbox" name="" id="pwdshow" >show</td>
+                   <td> <div id="pwdError">
+
+                    </div></td>
+                </tr>
+                
+                <tr>
+                    <td colspan="2" align="center">
+                        <input type="submit" value="Submit">
+                    </td>
+                </tr>
+                <tr>
+                    <td id="pwdErrorlog">
+                        <p id="aplphaId">A-Z and a-z</p>
+                        <p id="numId">0 to 9</p>
+                        <p id="charId">Sprcial symbol</p>
+                    </td>
+                </tr>
+                </table>
+              </form>
+        </fieldset>
+    </div>
+
+
+    <script src="script2.js"></script>
+</body>
+</html>
