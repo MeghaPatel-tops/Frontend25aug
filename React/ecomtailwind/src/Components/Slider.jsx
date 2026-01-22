@@ -2,12 +2,12 @@ import React from 'react'
 
 function Silder() {
   return (
-    <div style={{height:"700px !important",marginTop:"100px" }}>
+    <div style={{height:"700px", }}>
     
 
 
 <div id="default-carousel" className="relative w-full" data-carousel="slide" >
-    <div className="relative h-56 overflow-hidden rounded-base md:h-100">
+    <div className="relative  overflow-hidden rounded-base md:h-100">
         <div className="hidden duration-700 ease-in-out" data-carousel-item>
             <img src="https://images.pexels.com/photos/255379/pexels-photo-255379.jpeg" className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..." />
         </div>
