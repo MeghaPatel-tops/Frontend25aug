@@ -9,6 +9,8 @@ import Fruits from './Components/Fruits'
 import Users from './Components/Users'
 import Product from './Components/Product'
 import Counter from './Components/Counter'
+import Post from './Components/Post'
+import Todos from './Components/Todos'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -21,6 +23,11 @@ function App() {
         {/* <Fruits /> */}
         {/* <Users /> */}
         <Counter />
+        <br />
+        <hr />
+        {/* <Product /> */}
+        {/* <Post /> */}
+        <Todos />
     </>
   )
 }

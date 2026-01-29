@@ -18,7 +18,8 @@ function Product() {
     // },[count])
     useEffect(()=>{
         const timerId = setInterval(()=>{
-            setX(x+1)
+            let m=x+1
+            setX(m)
             console.log("Timr function called",x);
             
         },2000);
