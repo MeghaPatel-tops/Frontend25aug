@@ -1,10 +1,16 @@
 import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import './App.css'
+
 import { PostContext } from './Components/postContext'
 import Post from './Components/Post'
 import Comment from './Components/Comment'
+import Home from './Components/Home'
+import Hero from './Components/Hero'
+import Footer from './Components/Footer'
+import ThemeChanger from './Components/ThemeChanger'
+
+
 
 function App() {
   const [count, setCount] = useState(0)
@@ -27,10 +33,17 @@ function App() {
 
   return (
     <>
-          <PostContext.Provider value={post}>
+          {/* <PostContext.Provider value={post}>
                <Post />
                <Comment />
-          </PostContext.Provider>
+          </PostContext.Provider> */}
+
+          <ThemeChanger />
+               <Home />
+                <Hero />
+                <Footer />
+         
+         
     </>
   )
 }
