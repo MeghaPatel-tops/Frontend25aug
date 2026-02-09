@@ -1,0 +1,25 @@
+{
+  "products": [
+    {
+      "id": "e4b3",
+      "pname": "Dress punjabi ",
+      "price": "1200",
+      "description": "test Desription",
+      "pimage": "https://images.biba.in/on/demandware.static/-/Sites-biba-product-catalog/default/dw0cca70c4/images/ss23/festive1956ss23red_5.jpg"
+    },
+    {
+      "id": "b3ae",
+      "pname": "Dress punjabi",
+      "price": "1230",
+      "description": "Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight",
+      "pimage": "https://images.biba.in/on/demandware.static/-/Sites-biba-product-catalog/default/dw0cca70c4/images/ss23/festive1956ss23red_5.jpg"
+    },
+    {
+      "id": "3208",
+      "pname": "Keyboard tvs",
+      "price": "1230",
+      "description": "test Post",
+      "pimage": "https://images.biba.in/on/demandware.static/-/Sites-biba-product-catalog/default/dw0cca70c4/images/ss23/festive1956ss23red_5.jpg"
+    }
+  ]
+}
