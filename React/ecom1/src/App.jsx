@@ -10,6 +10,7 @@ import Services from './components/Services'
 import Gallary from './components/Gallary'
 import Productadd from './components/Productadd'
 import Productedit from './components/Productedit'
+import Filterapply from './components/Filterapply'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -25,6 +26,7 @@ function App() {
               <Route path='/product/edit/:id' element={<Productedit />}></Route>
             <Route path='/service' element={<Services/>}></Route>
             <Route path='/gallary' element={<Gallary/>}></Route>
+             <Route path='/filter' element={<Filterapply/>}></Route>
        </Routes>
 
     </>

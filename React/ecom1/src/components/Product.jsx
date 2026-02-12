@@ -20,6 +20,8 @@ function Product() {
   const getProducts = async()=>{
     try {
         let res = await axios.get('http://localhost:3000/products');
+        console.log(res);
+        
         let result = res.data;
         setProducts(result)
     } catch (error) {

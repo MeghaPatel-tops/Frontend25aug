@@ -29,7 +29,8 @@ function Navbar() {
             <NavLink to={'/product'} className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Products</NavLink>
             <NavLink to={'/service'} className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Services</NavLink>
             <NavLink to={'/gallary'} className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Gallary</NavLink>
-           
+            <NavLink to={'/filter'} className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Filter</NavLink>
+
             
           </div>
         </div>
