@@ -1,4 +1,4 @@
-import { collection, query,onSnapshot } from 'firebase/firestore';
+import { collection, query,onSnapshot, doc, deleteDoc } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react'
 import { db } from '../../../firebase';
 import { NavLink } from 'react-router-dom';
@@ -26,6 +26,20 @@ function Adminproduct() {
         }
     }
 
+    const deleteProduct= async(pid)=>{
+        try {
+            let docRef = doc(db,"products",pid);
+            let res = await deleteDoc(docRef);
+            if(res){
+                alert("Product Deleted");
+                getData();
+            }
+        } catch (error) {
+            console.log(error);
+            
+        }
+    }
+
     useEffect(()=>{
         getData();
     },[])
@@ -42,6 +56,7 @@ function Adminproduct() {
                     <th class="border border-blue-300 ...">Image</th>
                     <th class="border border-blue-300 ...">Price</th>
                     <th class="border border-blue-300 ...">Description</th>
+                    <th colSpan={2} class="border border-blue-300 ...">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -55,6 +70,14 @@ function Adminproduct() {
                             </td>
                              <td class="border border-blue-300 ...">{index.price}</td>
                               <td class="border border-blue-300 ...">{index.description}</td>
+                              <td>
+                                <button className='p-2 bg-red-500 text-white' onClick={()=>{
+                                    deleteProduct(index.id)
+                                }}>Delete</button>
+                              </td>
+                              <td>
+                                   <NavLink to={'/admin/product/edit/'+index.id}class="p-2 bg-green-900 text-white">Edit</NavLink>
+                              </td>
                             </tr>
                         ))
                     }

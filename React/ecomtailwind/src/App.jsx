@@ -27,7 +27,8 @@ function App() {
         <hr />
         {/* <Product /> */}
         {/* <Post /> */}
-        <Todos />
+        {/* <Todos /> */}
+        <Slider />
     </>
   )
 }
