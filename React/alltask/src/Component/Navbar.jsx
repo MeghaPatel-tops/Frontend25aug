@@ -1,8 +1,27 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Login from './Login'
+import { AuthContext } from './AuthContext'
 
 
 function Navbar() {
+  const {flag,setFlag}=useContext(AuthContext);
+  const [user,setUser]=useState({})
+
+  const logout =()=>{
+       if(flag==1){
+          localStorage.removeItem('session-user')
+          setFlag(0)
+       }
+  }
+ 
+ useEffect(()=>{
+      if(flag==1){
+          setUser(JSON.parse(localStorage.getItem('session-user')))
+      }
+      console.log(user);
+      
+ },[flag,setFlag])
+ 
   return (
     <div>
         <nav class="navbar navbar-expand-lg bg-dark text-white">
@@ -23,7 +42,20 @@ function Navbar() {
      
       </ul>
      <div>
-        <Login/>
+      {
+            flag==1 ? 
+            <div>
+              <span>Welcome:{user.username}</span>
+              <button class="nav-link text-white" onClick={logout}>Logout</button>
+              </div>
+              :
+          <Login/>
+      }
+     
+             
+
+      
+       
      </div>
     </div>
   </div>

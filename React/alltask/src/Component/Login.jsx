@@ -1,8 +1,17 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Register from './Register'
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from './AuthContext';
 
 function Login() {
+   const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const navigate = useNavigate();
   const [user,setUser]=useState({});
+  const {flag,setFlag}= useContext(AuthContext);
+
+  
 
   const handleChange = (e)=>{
     const {name,value}=e.target;
@@ -27,7 +36,11 @@ function Login() {
                   console.log("fill",filterArray);
                   
                  if(filterArray.length>0){
-                      alert("Logged In!")
+                      alert("Logged In!");
+                      setFlag(1)
+                      localStorage.setItem('session-user',JSON.stringify(filterArray[0]))
+                      $('#exampleModalToggle').modal('hide')
+                      navigate('/home')
                  }
                  else{
                      alert("Login fail")

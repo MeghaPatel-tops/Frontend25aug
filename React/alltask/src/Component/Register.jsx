@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 function Register() {
+  const navigate = useNavigate();
     const [user,setUser]=useState({
         username:"",
         email:"",
@@ -94,11 +96,15 @@ function Register() {
                  else{
                      newArray.push(user);
                        localStorage.setItem('users',JSON.stringify(newArray))
+                       $('#exampleModalToggle2').modal('hide')
+                      navigate('/home')
                  }
               }
               else{
                  let usersArray = [user]
                 localStorage.setItem('users',JSON.stringify(usersArray))
+                $('#exampleModalToggle2').modal('hide')
+                navigate('/home')
               }
              
             }
