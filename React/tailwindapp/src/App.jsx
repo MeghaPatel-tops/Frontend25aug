@@ -7,6 +7,8 @@ import Hero from './Hero'
 import About from './About'
 import { Route, Routes } from 'react-router-dom'
 import Wrok from './Wrok'
+import Project from './Project'
+import Contact from './Contact'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -21,6 +23,8 @@ function App() {
         <Hero />
         <About />
         <Wrok />
+        <Project />
+        <Contact />
       </div>
     </>
   )

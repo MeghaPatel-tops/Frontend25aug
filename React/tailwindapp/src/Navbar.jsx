@@ -15,10 +15,10 @@ function Navbar() {
               
             </div>
             <div class="w-20 flex-1 ...">
-                 <a href="">Project</a>
+                 <a href="#work">Work</a>
             </div>
             <div class="w-20 flex-1 ...">
-                 <a href="">Project</a>
+                 <a href="#project">Project</a>
             </div>
             </div>
   <div>
