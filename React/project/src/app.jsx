@@ -1,14 +1,33 @@
-import { useState } from 'preact/hooks'
-import preactLogo from './assets/preact.svg'
+import { useState } from 'react'
+import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import './app.css'
+import './App.css'
+import { Route, Routes } from 'react-router-dom'
+import Adminindex from './Admin/Adminindex'
+import Userindex from './User/Userindex'
 
-export function App() {
-  const [count, setCount] = useState(0)
 
+
+function App() {
+ 
   return (
     <>
-       <h1 className='text-4xl'>Welcome to app</h1>
+      
+      
+       <Routes>
+         <Route path='/' element={<Userindex />}></Route>
+
+
+
+
+
+         {/* Admin route */}
+         <Route path='/admin/*' element={<Adminindex />}></Route>
+          
+       </Routes>
+       
     </>
   )
 }
+
+export default App
