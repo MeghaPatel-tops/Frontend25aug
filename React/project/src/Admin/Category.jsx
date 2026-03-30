@@ -53,6 +53,7 @@ function Category() {
     () => {
       dispatch(getCategory())
       
+      
     }
     , [catMsg])
 
