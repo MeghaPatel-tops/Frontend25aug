@@ -14,7 +14,6 @@ function Product() {
     price: '',
     pimage: [],
     description: ''
-
   })
 
 

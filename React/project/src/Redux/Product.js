@@ -4,7 +4,6 @@ import { db } from "../Firebase/firebase";
 
 
 
-
 export const addProduct = createAsyncThunk('addProduct', async (data) => {
     try {
         const doc = collection(db, 'product');
