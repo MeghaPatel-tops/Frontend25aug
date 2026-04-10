@@ -1,13 +1,14 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { userRegistration } from '../Redux/User';
-import { NavLink } from 'react-router-dom';
-function Registraion() {
-    const [user,setUser]=useState({});
-    const dispatch = useDispatch();
-    const {userMsg}=useSelector((state) => state.users)
+import { userLogin, userRegistration } from '../Redux/User';
+import { useNavigate } from 'react-router-dom';
 
+function Login() {
+     const [user,setUser]=useState({}); 
+    const dispatch = useDispatch();
+    const {userMsg,singleUser,islogged}=useSelector((state) => state.users)
+    const navigate = useNavigate()
 
 
     const handleChange = (e)=>{
@@ -21,23 +22,31 @@ function Registraion() {
     
         e.preventDefault();
         console.log(user);
-        dispatch(userRegistration(user))
-        
+        dispatch(userLogin(user))      
     }
+
+    useEffect(()=>{
+        console.log(islogged);
+        
+         if(islogged){
+              localStorage.setItem('loggedUser',JSON.stringify(singleUser))
+            navigate('/')
+            
+        }  
+    },[islogged])
+
+
   return (
-    <div class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div>
+           <div class="bg-gray-100 flex items-center justify-center min-h-screen">
   <div class="w-full max-w-md bg-white shadow-lg rounded-xl p-8">
-    {
-        userMsg&& <p>userMsg</p>
+   {
+        userMsg&& <p>{userMsg}</p>
     }
     <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Create Account</h2>
 
     <form class="space-y-4" method='post'>     
-      <div>
-        <label class="block font-medium text-gray-700 mb-1">Username</label>
-        <input type="text" placeholder="Enter username"
-          class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" name='username' onChange={handleChange}/>
-      </div>
+     
 
      
       <div>
@@ -62,12 +71,13 @@ function Registraion() {
 
     <p class="text-center text-gray-600 mt-4 text-sm">
       Already have an account?
-      <NavLink href="#" class="text-blue-600 font-medium hover:underline" to={'/login'}>Login</NavLink>
+      <a href="#" class="text-blue-600 font-medium hover:underline">Login</a>
     </p>
 
   </div>
   </div>
+    </div>
   )
 }
 
-export default Registraion
+export default Login
