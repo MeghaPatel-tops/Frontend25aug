@@ -1,13 +1,13 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { userRegistration } from '../Redux/User';
-import { NavLink } from 'react-router-dom';
+import { clearMsg, userRegistration } from '../Redux/User';
+import { NavLink, useNavigate } from 'react-router-dom';
 function Registraion() {
     const [user,setUser]=useState({});
     const dispatch = useDispatch();
     const {userMsg}=useSelector((state) => state.users)
-
+    const navigate = useNavigate();
 
 
     const handleChange = (e)=>{
@@ -22,16 +22,23 @@ function Registraion() {
         e.preventDefault();
         console.log(user);
         dispatch(userRegistration(user))
+      
         
     }
+    useEffect(()=>{
+       if( userMsg=='user added'){
+        dispatch(clearMsg())
+          navigate('/login')
+       }
+    },[userMsg])
   return (
     <div class="bg-gray-100 flex items-center justify-center min-h-screen">
   <div class="w-full max-w-md bg-white shadow-lg rounded-xl p-8">
-    {
-        userMsg&& <p>userMsg</p>
-    }
+   
     <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Create Account</h2>
-
+ {
+        userMsg&& <p>{userMsg}</p>
+    }
     <form class="space-y-4" method='post'>     
       <div>
         <label class="block font-medium text-gray-700 mb-1">Username</label>

@@ -2,11 +2,13 @@ import React, { useContext, useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProducts } from '../Redux/Product';
 import { CategoryContext } from '../Context/CategoryContext';
+import { addTOCart } from '../Redux/Cart';
 
 function ProductSec() {
   const { productArray } = useSelector((state) => state.product)
   const dispatch = useDispatch();
   const {catname,setCatName}= useContext(CategoryContext)
+  const {cartMsg}= useSelector((state)=>state.cart)
   //console.log(productArray);
 
  
@@ -32,6 +34,21 @@ function ProductSec() {
        
         return newArray
   },[catname,productArray])
+
+  const addinCart = (pid)=>{
+       alert(pid)
+        let userInfo = localStorage.getItem('loggedUser');
+       
+        
+        if(userInfo){
+            userInfo = JSON.parse(userInfo)
+            dispatch(addTOCart({userid:userInfo.id,productid:pid,qty:1}))
+        }
+  }
+
+  useEffect(()=>{
+      alert(cartMsg)
+  },[cartMsg])
   
   return (
     <div>
@@ -49,7 +66,9 @@ function ProductSec() {
                 <div class="p-4">
                   <h4 class="font-semibold text-lg">{index.pname}</h4>
                   <p class="text-gray-600">{index.price}</p>
-                  <button class="mt-3 w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">Add to Cart</button>
+                  <button class="mt-3 w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700" onClick={()=>{
+                      addinCart(index.id)
+                  }}>Add to Cart</button>
                 </div>
               </div>
             ))

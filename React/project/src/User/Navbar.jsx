@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom'
-import { logout } from '../Redux/User';
+import { clearMsg, logout } from '../Redux/User';
 function Navbar() {
 
   const [logged,setLogged]= useState(false);
@@ -24,6 +24,7 @@ function Navbar() {
 
   const logout1 = ()=>{
       localStorage.removeItem('loggedUser');
+      dispatch(clearMsg())
       dispatch(logout())
       console.log(islogged);
       

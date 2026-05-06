@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { userLogin, userRegistration } from '../Redux/User';
+import { userLogin, userRegistration,clearMsg } from '../Redux/User';
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
@@ -22,18 +22,16 @@ function Login() {
     
         e.preventDefault();
         console.log(user);
-        dispatch(userLogin(user))      
+        dispatch(userLogin(user))  
+       
     }
 
     useEffect(()=>{
-        console.log(islogged);
-        
-         if(islogged){
-              localStorage.setItem('loggedUser',JSON.stringify(singleUser))
-            navigate('/')
-            
-        }  
-    },[islogged])
+        if( userMsg=='Successfully login'){
+                dispatch(clearMsg())
+                  navigate('/')
+        }    
+    },[userMsg])
 
 
   return (
