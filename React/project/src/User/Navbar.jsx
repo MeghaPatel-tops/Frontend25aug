@@ -41,7 +41,11 @@ function Navbar() {
         <li><a href="#categories" class="hover:text-blue-600">Categories</a></li>
         <li><a href="#catalog" class="hover:text-blue-600">Product Catalog</a></li>
         {
-           islogged==true ? <li>Welcome:{user1.username} <button onClick={logout1}>Logout</button></li> : <li><NavLink class="hover:text-blue-600" to={'/registration'}>Registraion</NavLink></li>
+           islogged==true ? 
+             <><li>Welcome:{user1.username} <button onClick={logout1}>Logout</button></li>
+            <NavLink class="hover:text-blue-600" to={'/cart'}><i class="fa-solid fa-cart-arrow-down"></i></NavLink>
+             </>
+           : <li><NavLink class="hover:text-blue-600" to={'/registration'}>Registraion</NavLink></li>
         }
        
       </ul>
