@@ -22,6 +22,7 @@ async function connection(){
 
 async function insertProduct(){
     try {
+        
         const db =await  connection();
         const collection = db.collection('productdata')
 

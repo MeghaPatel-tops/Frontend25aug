@@ -4,15 +4,27 @@ const { writeFileFun, readFileFun } = require('./filehandling');
 const { pathModuleExample } = require('./pathexample');
 const { osTask } = require('./osmodule');
 const { EventExample } = require('./eventmodule');
+const {readFileUsingPromise, readFileUsingasync, getProduct} = require('./promiseexample');
 
 
 
-osTask();
-writeFileFun();
-readFileFun()
-pathModuleExample();
-EventExample();
 
+// osTask();
+// writeFileFun();
+// readFileFun()
+// pathModuleExample();
+// EventExample();
+
+// readFileUsingPromise()
+// .then((data)=>{
+//     console.log(data)
+// })
+// .catch((err)=>{
+//     console.log(err)
+// })
+
+//readFileUsingasync();
+getProduct();
 
 const server = http.createServer((req,res)=>{
   
