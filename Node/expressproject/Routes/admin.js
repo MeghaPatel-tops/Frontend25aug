@@ -1,4 +1,6 @@
 const express = require('express');
+const getLongLat = require('./comman');
+
 const router = express.Router();
 
 router.get('/product',(req,res)=>{
@@ -6,9 +8,14 @@ router.get('/product',(req,res)=>{
 })
 
 router.get('/whether',(req,res)=>{
-    console.log(req.query.long);
-    console.log(req.query.lat);
-    
+    console.log(req.query.city);
+    getLongLat(req,(data)=>{
+          res.json(data)
+    },(err)=>{
+        res.send(err.message)
+    }
+
+)
     
 })
 router.get('/category/:id',(req,res)=>{

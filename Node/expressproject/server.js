@@ -2,12 +2,12 @@ const express = require('express');
 const adminRoutes = require('./Routes/admin.js')
 const loggingMiddleware = require('./Middleware/LoggingMiddleware.js')
 const Exception = require('./Middleware/Exception.js')
-const RateLimit = require('./Middleware/RateLimit.js')
+// const RateLimit = require('./Middleware/RateLimit.js')
 
 const app = express();
 app.use(loggingMiddleware)
 app.use(Exception)
-app.use(RateLimit)
+// app.use(RateLimit)
 
 
 
