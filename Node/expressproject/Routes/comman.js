@@ -18,10 +18,10 @@ const key = process.env.appkey
         console.log(timestamp);
         
 
-        let res1= await axios.get(  `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=5f45da6d5e2c02c1946f9b09e5e80be2&units=metric`
+        let res1= await axios.get(  `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=&units=metric`
 )
         
--
+
         console.log(res1.data);
         data(res1.data)
         

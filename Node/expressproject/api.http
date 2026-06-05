@@ -1,0 +1,20 @@
+http://localhost:3000/home
+
+###
+
+POST http://localhost:3000/student/create
+content-type: application/json
+
+
+{
+  "studentname": "soeb",
+  "email": "soeb@gmail.com",
+  "contact": "9090990",
+  "address": "101 main street surat"
+}
+
+###
+GET http://localhost:3000/student/
+
+###
+GET http://localhost:3000/student/6a22a1d10e0dfbf70c030ed9
