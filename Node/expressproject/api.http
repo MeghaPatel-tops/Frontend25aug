@@ -17,4 +17,20 @@ content-type: application/json
 GET http://localhost:3000/student/
 
 ###
-GET http://localhost:3000/student/6a22a1d10e0dfbf70c030ed9
+GET http://localhost:3000/student/6a268fa4ce3399e28c0daf6e
+
+###
+delete  http://localhost:3000/student/deletestudent/6a22a1d10e0dfbf70c030ed9
+Content-Type: application/json
+
+###
+PATCH  http://localhost:3000/student/update/6a268fa4ce3399e28c0daf6e
+content-type: application/json
+
+
+{
+  "studentname": "soeb Pinjari",
+  "email": "soeb@gmail.com",
+  "contact": "909099009",
+  "address": "101 main street surat"
+}

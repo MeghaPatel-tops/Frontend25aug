@@ -29,4 +29,22 @@ const getStudentById = async (req,res,data,err)=>{
     }
 }
 
-module.exports = {createStudent,getAllStudent,getStudentById}
+const deleteStudentById= async(req,res,data,err)=>{
+    try {
+        const result = await Student.findByIdAndDelete(req.params.id);
+        data(result)
+    } catch (error) {
+        err(error)
+    }
+}
+
+const updateStudentById= async(req,res,data,err)=>{
+    try {
+        let res = await Student.updateOne({_id:Object(req.params.id)},req.body)
+        data(res)
+    } catch (error) {
+        err(error)
+    }
+}
+
+module.exports = {createStudent,getAllStudent,getStudentById,deleteStudentById,updateStudentById}
