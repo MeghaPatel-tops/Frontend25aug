@@ -1,9 +1,16 @@
 const express = require('express');
 const connection = require('./database/db');
 const AdminRoute = require('./Routes/AdminRoute')
+const cors = require("cors");
+
 
 const app = express();
 app.use('/uploads', express.static('uploads'));
+app.use(
+  cors({
+    origin: "http://localhost:5173", // Your React app URL
+  })
+);
 
 connection()
 app.get('/',(req,res)=>{
