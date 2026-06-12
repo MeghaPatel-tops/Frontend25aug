@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-// import { addCategory, deleteCategory, getCatById, getCategory, updateCategory } from '../Redux/Category';
 import { log } from 'firebase/firestore/pipelines';
 import axios from 'axios';
 
@@ -47,6 +46,8 @@ function Category() {
         let res = await axios.post("http://localhost:3000/admin/category/create",formData);
         if(res){
           console.log(res);
+           getCategory();
+           setCat({})
           
         }
     } catch (error) {
@@ -56,11 +57,26 @@ function Category() {
 
   }
 
-  const handleUpdate = (e)=>{
-    e.preventDefault();
-      let obj ={data:cat,cid:cid};
-      dispatch(updateCategory(obj))
-    setCat("")
+  const handleUpdate = async(e)=>{
+     e.preventDefault();
+   console.log(cat);
+   
+    const formData =   new FormData();
+   
+    try {
+      formData.append('cimage',cat.cimage);
+        formData.append('cname',cat.cname)
+        console.log(formData);
+        let res = await axios.patch("http://localhost:3000/admin/category/update/"+cid,formData);
+        if(res){
+          console.log(res);
+          getCategory();
+           setCat({})
+        }
+    } catch (error) {
+        console.log(error);
+        
+    }
 
   }
 
@@ -70,6 +86,20 @@ function Category() {
           if(res){
             console.log(res.data);
             setCatArray(res.data.catdata)
+            
+          }
+      } catch (error) {
+        console.log( error);
+        
+      }
+  }
+
+   const getCatById = async(id)=>{
+      try {
+          let res = await axios.get('http://localhost:3000/admin/category/'+id);
+          if(res){
+            console.log(res.data);
+            setCat(res.data.catdata)
             
           }
       } catch (error) {
@@ -169,8 +199,8 @@ function Category() {
                     }}>Delete</button></td>
                     <td>
                       <button className='bg-green-500 text-white p-2' onClick={()=>{
-                        setCid(item.id)
-                        dispatch(getCatById(item.id))
+                        setCid(item._id)
+                        getCatById(item._id)
                       }}>Edit</button>
                     </td>
                   </tr>

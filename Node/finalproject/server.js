@@ -4,13 +4,17 @@ const AdminRoute = require('./Routes/AdminRoute')
 const cors = require("cors");
 
 
+
 const app = express();
 app.use('/uploads', express.static('uploads'));
+
 app.use(
   cors({
-    origin: "http://localhost:5173", // Your React app URL
+    origin: "http://localhost:5174", // Your React app URL
   })
 );
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 connection()
 app.get('/',(req,res)=>{

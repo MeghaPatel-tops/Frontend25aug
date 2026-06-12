@@ -1,14 +1,16 @@
-const Category = require("../Model/Category")
+const Product = require('../Model/Products')
 
-const createCategory = async(req,res,data,err)=>{
+const createProducts = async(req,res,data,err)=>{
     try {
-        const res = await Category.insertOne({
-            cname:req.body.cname,
-            cimage:"uploads/"+req.file.filename,
+        const res = await Product.insertOne({
+            pname:req.body.pname,
+            price:req.body.price,
+            description:req.body.description,
+            pimage:"uploads/"+req.file.filename,
+            cname:req.body.cname
         })
         if(res){
             console.log(data);
-            
             data(res);
         }
         
@@ -56,4 +58,4 @@ const updateCategoryById = async (req, res, data, err) => {
   }
 };
 
-module.exports = {createCategory,getCategory,deleteCategoryById,getCategoryById,updateCategoryById}
+module.exports = {createProducts,getCategory,deleteCategoryById,getCategoryById,updateCategoryById}

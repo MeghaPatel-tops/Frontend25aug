@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getCategory } from '../Redux/Category';
+
 import { CategoryContext } from '../Context/CategoryContext';
 
 function CategorySec() {

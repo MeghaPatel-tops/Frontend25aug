@@ -1,13 +1,14 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getCategory } from '../Redux/Category';
-import { addProduct, deleteProduct, getProductById, getProducts, updateProduct } from '../Redux/Product';
+// import { getCategory } from '../Redux/Category';
+// import { addProduct, deleteProduct, getProductById, getProducts, updateProduct } from '../Redux/Product';
 
 function Product() {
   const dispatch = useDispatch();
-  const [eid,setEid]= useState(null)
-  const { catArray } = useSelector((state) => state.category)
-  const {proError,proMsg,isloadingP,productArray,singleProduct}=useSelector((state)=>state.product)
+  const [eid, setEid] = useState(null)
+  const [catArray, setCatArray] = useState([])
+  const { proError, proMsg, isloadingP, productArray, singleProduct } = useSelector((state) => state.product)
   const [product, setProduct] = useState({
     pname: '',
     cname: '',
@@ -17,44 +18,30 @@ function Product() {
   })
 
 
-  const cleanUp = ()=>{
-       setProduct({
-    pname: '',
-    cname: '',
-    price: '',
-    pimage: [],
-    description: '',
-   
+  const cleanUp = () => {
+    setProduct({
+      pname: '',
+      cname: '',
+      price: '',
+      pimage: [],
+      description: '',
 
-  })
+
+    })
   }
 
   const handleFile = (e) => {
     let fileArray = e.target.files;
-    console.log(e.target.files);
-    let proImgArray = [];
-    for (let i = 0; i < fileArray.length; i++) {
-      const file = e.target.files[i];
+       const file = e.target.files[0];
 
-      const reader = new FileReader();
-
-      reader.readAsDataURL(file)
-
-      reader.onload = () => {
-        proImgArray.push(reader.result)
-
-      }
-
-    }
-
-    console.log(proImgArray);
     setProduct({
       ...product,
-      ['pimage']: proImgArray
+      pimage:file
     })
 
-
   }
+
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -63,28 +50,70 @@ function Product() {
       [name]: value
     })
   }
-  const handleClick = () => {
-    dispatch(addProduct(product))
-      setTimeout(cleanUp,2000)
-  }
+  const handleClick = async (e) => {
+    e.preventDefault();
+    
+
+  console.log(product);
   
 
+    try {
+      const formData = new FormData();
+
+      formData.append("pname", product.pname);
+      formData.append("price", product.price);
+      formData.append("cname", product.cname);
+      formData.append("pimage", product.pimage); // File objec
+      formData.append("description",product.description)
+      console.log(formData);
+      
+      let res = await axios.post("http://localhost:3000/admin/product/create", formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+      if (res) {
+        console.log(res);
+        alert(res.data.msg)
+        setProduct({})
+      }
+    } catch (error) {
+      console.log(error);
+
+    }
+  }
+
+  const getCategory = async () => {
+    try {
+      let res = await axios.get('http://localhost:3000/admin/category');
+      if (res) {
+        console.log(res.data);
+        setCatArray(res.data.catdata)
+
+      }
+    } catch (error) {
+      console.log(error);
+
+    }
+  }
+
   useEffect(() => {
-    dispatch(getCategory())
-    dispatch(getProducts())
-    
+    getCategory();
+
+
+
   }, [proMsg])
 
-  useEffect(()=>{
-      setProduct(singleProduct ?? {})
-     
-  },[singleProduct,eid])
+  useEffect(() => {
+    setProduct(singleProduct ?? {})
 
-   
+  }, [singleProduct, eid])
+
+
   return (
     <div>
       <h2 className='text-2xl'>Add Product</h2>
-     {
+      {
         isloadingP && <h3>Loading...</h3>
       }
       {
@@ -104,7 +133,7 @@ function Product() {
                     <option value="">Select</option>
                     {
                       catArray && catArray.map((index, i) => (
-                        <option value={index.id}>{index.cname ?? ''}</option>
+                        <option value={index._id}>{index.cname ?? ''}</option>
                       ))
                     }
                   </select>
@@ -115,7 +144,7 @@ function Product() {
               <div class="sm:col-span-3">
                 <label for="last-name" class="block text-sm/6 font-medium text-gray-900">Product Name </label>
                 <div class="mt-2">
-                  <input id="last-name" type="text" name="pname" autocomplete="family-name" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" required onChange={handleChange}  value={product.pname}/>
+                  <input id="last-name" type="text" name="pname" autocomplete="family-name" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" required onChange={handleChange} value={product.pname} />
                 </div>
               </div>
               <div class="sm:col-span-3">
@@ -133,7 +162,7 @@ function Product() {
               <div class="sm:col-span-3">
                 <label for="last-name" class="block text-sm/6 font-medium text-gray-900">Description</label>
                 <div class="mt-2">
-                  <input id="last-name" type="text" name="description" autocomplete="family-name" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" required onChange={handleChange} value={product.description}/>
+                  <input id="last-name" type="text" name="description" autocomplete="family-name" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" required onChange={handleChange} value={product.description} />
                 </div>
               </div>
 
@@ -142,28 +171,28 @@ function Product() {
 
               <div class="mt-3">
 
-              {
+                {
                   eid && eid != null ?
-                  <button type='button' className='p-2 bg-blue-600 text-white' onClick={()=>{
-                    dispatch( updateProduct({
-                       pid:eid,
-                       data:product
-                    }))
-                  }}>Update</button>
-                  :
+                    <button type='button' className='p-2 bg-blue-600 text-white' onClick={() => {
+                      dispatch(updateProduct({
+                        pid: eid,
+                        data: product
+                      }))
+                    }}>Update</button>
+                    :
                     <button type='button' className='p-2 bg-blue-600 text-white' onClick={handleClick}>Submit</button>
-              }
+                }
               </div>
             </div>
           </div>
         </div>
       </form>
-<div className="container mt-20">
+      <div className="container mt-20">
         <div class="overflow-x-auto">
           <table class="min-w-full border border-gray-300">
             <thead class="bg-gray-100">
               <tr>
-               
+
                 <th class="border border-gray-300 px-4 py-2 text-left">SRNO</th>
                 <th class="border border-gray-300 px-4 py-2 text-left">Category Name</th>
                 <th class="border border-gray-300 px-4 py-2 text-left">ProductName</th>
@@ -175,34 +204,34 @@ function Product() {
             </thead>
 
             <tbody>
-                    {
-                      productArray&& productArray.map((index,i)=>(
-                          <tr key={i}>
-                            <td class="border border-gray-300 px-4 py-2">{i+1}</td>
-                            <td class="border border-gray-300 px-4 py-2">{index.catname}</td>
-                            <td class="border border-gray-300 px-4 py-2">{index.pname}</td>
-                            <td class="border border-gray-300 px-4 py-2">{index.price}</td>
-                            <td class="border border-gray-300 px-4 py-2 ">
-                              {
-                                index.pimage && index.pimage.map((index)=>(
-                                    <img src={index ?? ''} alt="" height={"100px"} width={"100px"} />
-                                ))
-                              }
-                            </td>
-                             <td class="border border-gray-300 px-4 py-2">{index.description}</td>
-                             <td>
-                              <button type='button' className='p-3 bg-red-500 text-white'><i class="fa-solid fa-trash" onClick={()=>{
-                                  dispatch(deleteProduct(index.id))
-                              }}></i></button>
-                              <button type='button' className='p-3 bg-green-500 ms-2 text-white'><i class="fa-solid fa-pen-to-square" onClick={()=>{
-                                  alert(index.id)
-                                  setEid(index.id);
-                                  dispatch(getProductById(index.id))
-                              }}></i></button>
-                             </td>
-                          </tr>
-                      ))
-                    }
+              {
+                productArray && productArray.map((index, i) => (
+                  <tr key={i}>
+                    <td class="border border-gray-300 px-4 py-2">{i + 1}</td>
+                    <td class="border border-gray-300 px-4 py-2">{index.catname}</td>
+                    <td class="border border-gray-300 px-4 py-2">{index.pname}</td>
+                    <td class="border border-gray-300 px-4 py-2">{index.price}</td>
+                    <td class="border border-gray-300 px-4 py-2 ">
+                      {
+                        index.pimage && index.pimage.map((index) => (
+                          <img src={index ?? ''} alt="" height={"100px"} width={"100px"} />
+                        ))
+                      }
+                    </td>
+                    <td class="border border-gray-300 px-4 py-2">{index.description}</td>
+                    <td>
+                      <button type='button' className='p-3 bg-red-500 text-white'><i class="fa-solid fa-trash" onClick={() => {
+                        dispatch(deleteProduct(index.id))
+                      }}></i></button>
+                      <button type='button' className='p-3 bg-green-500 ms-2 text-white'><i class="fa-solid fa-pen-to-square" onClick={() => {
+                        alert(index.id)
+                        setEid(index.id);
+                        dispatch(getProductById(index.id))
+                      }}></i></button>
+                    </td>
+                  </tr>
+                ))
+              }
             </tbody>
           </table>
         </div>
