@@ -1,55 +1,62 @@
-import React, { useContext, useEffect, useMemo } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { getProducts } from '../Redux/Product';
+import React, { useContext, useEffect, useMemo, useState } from 'react'
+
+
 import { CategoryContext } from '../Context/CategoryContext';
 import { addTOCart } from '../Redux/Cart';
+import axios from 'axios';
 
 function ProductSec() {
-  const { productArray } = useSelector((state) => state.product)
-  const dispatch = useDispatch();
-  const {catname,setCatName}= useContext(CategoryContext)
-  const {cartMsg}= useSelector((state)=>state.cart)
+  const [productArray, setProductArray] = useState([])
+
+  const { catname, setCatName } = useContext(CategoryContext)
+
   //console.log(productArray);
+  const getProductData = async () => {
+    try {
+      let res = await axios.get('http://localhost:3000/admin/product');
+      if (res) {
+        console.log(res.data.data);
+        setProductArray(res.data.data)
+
+      }
+    } catch (error) {
+      console.log(error);
+
+    }
+  }
 
  
-  useEffect(() => {
-    dispatch(getProducts())   
-  }, [])
 
-   const FilterProduct = useMemo(()=>{
-        let newArray ;
-        if(catname != ''){
-       
-          newArray  = productArray.filter((index,i)=>{
-               if(index.cname == catname){
-                  return index
-               }
-          })
-        
-        }
-        else{
-       
-            newArray = productArray
-        }
-       
-        return newArray
-  },[catname,productArray])
+  const FilterProduct = useMemo(() => {
+    let newArray;
+    if (catname != '') {
 
-  const addinCart = (pid)=>{
-       alert(pid)
-        let userInfo = localStorage.getItem('loggedUser');
-       
-        
-        if(userInfo){
-            userInfo = JSON.parse(userInfo)
-            dispatch(addTOCart({userid:userInfo.id,productid:pid,qty:1}))
+      newArray = productArray.filter((index, i) => {
+        if (index.cname == catname) {
+          return index
         }
+      })
+
+    }
+    else {
+
+      newArray = productArray
+    }
+
+    return newArray
+  }, [catname, productArray])
+
+  const addinCart = (pid) => {
+    alert(pid)
+   
   }
 
   useEffect(()=>{
-      alert(cartMsg)
-  },[cartMsg])
-  
+    getProductData()
+  },[])
+
+
+
   return (
     <div>
 
@@ -62,12 +69,12 @@ function ProductSec() {
           {
             FilterProduct && FilterProduct.map((index, i) => (
               <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg">
-                <img src={index.pimage} class="w-100 h-48 object-cover" />
+                <img src={"http://localhost:3000/"+index.pimage} class="w-100 h-48 object-cover" />
                 <div class="p-4">
                   <h4 class="font-semibold text-lg">{index.pname}</h4>
                   <p class="text-gray-600">{index.price}</p>
-                  <button class="mt-3 w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700" onClick={()=>{
-                      addinCart(index.id)
+                  <button class="mt-3 w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700" onClick={() => {
+                    addinCart(index.id)
                   }}>Add to Cart</button>
                 </div>
               </div>
@@ -76,7 +83,7 @@ function ProductSec() {
 
 
 
-        
+
 
         </div>
       </section>

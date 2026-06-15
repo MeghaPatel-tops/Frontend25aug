@@ -10,7 +10,7 @@ app.use('/uploads', express.static('uploads'));
 
 app.use(
   cors({
-    origin: "http://localhost:5174", // Your React app URL
+    origin: "http://localhost:5173", // Your React app URL
   })
 );
 app.use(express.json());

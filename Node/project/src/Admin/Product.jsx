@@ -1,8 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-// import { getCategory } from '../Redux/Category';
-// import { addProduct, deleteProduct, getProductById, getProducts, updateProduct } from '../Redux/Product';
+
 
 function Product() {
   const dispatch = useDispatch();
@@ -16,6 +15,7 @@ function Product() {
     pimage: [],
     description: ''
   })
+  const [productData,setProductData]=useState([])
 
 
   const cleanUp = () => {
@@ -83,6 +83,40 @@ function Product() {
     }
   }
 
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    
+
+  console.log(product);
+  
+
+    try {
+      const formData = new FormData();
+
+      formData.append("pname", product.pname);
+      formData.append("price", product.price);
+      formData.append("cname", product.cname);
+      formData.append("pimage", product.pimage); // File objec
+      formData.append("description",product.description)
+      console.log(formData);
+      
+      let res = await axios.patch("http://localhost:3000/admin/product/update/"+eid, formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+      if (res) {
+        console.log(res);
+        alert(res.data.msg)
+        getProductData();
+        cleanUp()
+      }
+    } catch (error) {
+      console.log(error);
+
+    }
+  }
+
   const getCategory = async () => {
     try {
       let res = await axios.get('http://localhost:3000/admin/category');
@@ -97,12 +131,37 @@ function Product() {
     }
   }
 
+    const getProductData = async () => {
+    try {
+      let res = await axios.get('http://localhost:3000/admin/product');
+      if (res) {
+        console.log(res.data.data);
+        setProductData(res.data.data)
+
+      }
+    } catch (error) {
+      console.log(error);
+
+    }
+  }
+
+  const getProductById= async(id)=>{
+      try {
+        let res = await axios.get('http://localhost:3000/admin/product/'+id);
+        console.log(res.data);
+        setProduct(res.data)
+        
+      } catch (error) {
+        
+      }
+  }
+
   useEffect(() => {
     getCategory();
+    getProductData();
 
 
-
-  }, [proMsg])
+  }, [])
 
   useEffect(() => {
     setProduct(singleProduct ?? {})
@@ -150,7 +209,7 @@ function Product() {
               <div class="sm:col-span-3">
                 <label for="last-name" class="block text-sm/6 font-medium text-gray-900">Product image</label>
                 <div class="mt-2">
-                  <input id="last-name" type="file" name="pimage[]" autocomplete="family-name" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" required onChange={handleFile} multiple />
+                  <input id="last-name" type="file" name="pimage[]" autocomplete="family-name" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" required onChange={handleFile} multiple required />
                 </div>
               </div>
               <div class="sm:col-span-3">
@@ -173,12 +232,7 @@ function Product() {
 
                 {
                   eid && eid != null ?
-                    <button type='button' className='p-2 bg-blue-600 text-white' onClick={() => {
-                      dispatch(updateProduct({
-                        pid: eid,
-                        data: product
-                      }))
-                    }}>Update</button>
+                    <button type='button' className='p-2 bg-blue-600 text-white' onClick={handleUpdate}>Update</button>
                     :
                     <button type='button' className='p-2 bg-blue-600 text-white' onClick={handleClick}>Submit</button>
                 }
@@ -205,18 +259,14 @@ function Product() {
 
             <tbody>
               {
-                productArray && productArray.map((index, i) => (
+                productData && productData.map((index, i) => (
                   <tr key={i}>
                     <td class="border border-gray-300 px-4 py-2">{i + 1}</td>
                     <td class="border border-gray-300 px-4 py-2">{index.catname}</td>
                     <td class="border border-gray-300 px-4 py-2">{index.pname}</td>
                     <td class="border border-gray-300 px-4 py-2">{index.price}</td>
                     <td class="border border-gray-300 px-4 py-2 ">
-                      {
-                        index.pimage && index.pimage.map((index) => (
-                          <img src={index ?? ''} alt="" height={"100px"} width={"100px"} />
-                        ))
-                      }
+                       <img src={"http://localhost:3000/"+index.pimage ??"" } alt="" height={"100px"} width={"100px"} />
                     </td>
                     <td class="border border-gray-300 px-4 py-2">{index.description}</td>
                     <td>
@@ -224,9 +274,9 @@ function Product() {
                         dispatch(deleteProduct(index.id))
                       }}></i></button>
                       <button type='button' className='p-3 bg-green-500 ms-2 text-white'><i class="fa-solid fa-pen-to-square" onClick={() => {
-                        alert(index.id)
-                        setEid(index.id);
-                        dispatch(getProductById(index.id))
+                       
+                        setEid(index._id);
+                        getProductById(index._id)
                       }}></i></button>
                     </td>
                   </tr>
