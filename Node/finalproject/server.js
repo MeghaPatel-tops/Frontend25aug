@@ -2,6 +2,7 @@ const express = require('express');
 const connection = require('./database/db');
 const AdminRoute = require('./Routes/AdminRoute')
 const cors = require("cors");
+const UserRoute = require('./Routes/UserRoute')
 
 
 
@@ -22,6 +23,7 @@ app.get('/',(req,res)=>{
 })
 
 app.use('/admin',AdminRoute)
+app.use('/',UserRoute)
 
 app.listen(3000,()=>{
     console.log(` app running on:http://localhost:3000/`);

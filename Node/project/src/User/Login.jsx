@@ -3,11 +3,12 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { userLogin, userRegistration,clearMsg } from '../Redux/User';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function Login() {
      const [user,setUser]=useState({}); 
-    const dispatch = useDispatch();
-    const {userMsg,singleUser,islogged}=useSelector((state) => state.users)
+     const [err, setError] = useState(null);
+     const [msg,setMsg]= useState(null)
     const navigate = useNavigate()
 
 
@@ -18,29 +19,42 @@ function Login() {
             [name]:value
         })
     }
-    const handleClick=(e)=>{
+    const handleClick=async(e)=>{
     
         e.preventDefault();
-        console.log(user);
-        dispatch(userLogin(user))  
+       try {
+            let res = await axios.post('http://localhost:3000/login',user);
+            console.log(res);
+            if(res.data.error){
+                setError(res.data)
+            }
+            
+       } catch (error) {
+           console.log(error);
+           
+       }
        
     }
 
     useEffect(()=>{
-        if( userMsg=='Successfully login'){
-                dispatch(clearMsg())
-                  navigate('/')
-        }    
-    },[userMsg])
+        
+    },[])
 
 
   return (
     <div>
            <div class="bg-gray-100 flex items-center justify-center min-h-screen">
   <div class="w-full max-w-md bg-white shadow-lg rounded-xl p-8">
-   {
-        userMsg&& <p>{userMsg}</p>
-    }
+     {
+          err && (<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+            {err.error  }:{err.msg}
+          </div>)
+        }
+        {
+          msg && (<div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
+            {msg}
+          </div>)
+        }
     <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Create Account</h2>
 
     <form class="space-y-4" method='post'>     
