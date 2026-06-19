@@ -9,6 +9,7 @@ import { CategoryProvider } from './Context/CategoryContext'
 import Registraion from './User/Registraion'
 import Login from './User/Login'
 import Viewcart from './User/Viewcart'
+import UserProfile from './User/UserProfile'
 
 
 
@@ -23,6 +24,7 @@ function App() {
          <Route path='/registration' element={<Registraion/>}></Route>
          <Route path='/login' element={<Login/>}></Route>
          <Route path='/cart' element={<Viewcart/>}></Route>
+         <Route path='/profile' element={<UserProfile/>}></Route>
 
 
 

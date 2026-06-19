@@ -24,7 +24,9 @@ function Login() {
         e.preventDefault();
        try {
             let res = await axios.post('http://localhost:3000/login',user);
-            console.log(res);
+            console.log(res.data);
+            localStorage.setItem('token',res.data.token)
+            navigate('/profile')
             if(res.data.error){
                 setError(res.data)
             }
