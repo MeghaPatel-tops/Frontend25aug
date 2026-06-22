@@ -1,5 +1,5 @@
 const express = require('express');
-const { userRegistration, userLogin } = require('../Controller/UserController.js');
+const { userRegistration, userLogin, addToCart } = require('../Controller/UserController.js');
 const authMiddleware = require('../Middleware/authMiddleware.js');
 const router = express.Router();
 
@@ -23,6 +23,13 @@ router.get('/profile',authMiddleware,(req,res)=>{
         message: "Protected Route",
         user: req.user
     });
+      
+})
+
+router.post('/addtocart',authMiddleware,(req,res)=>{
+     console.log(req.body);
+     
+      addToCart(req,res)
       
 })
 module.exports= router

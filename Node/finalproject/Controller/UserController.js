@@ -1,3 +1,4 @@
+const Cart = require("../Model/Cart");
 const Users = require("../Model/Users")
 const jwt = require("jsonwebtoken");
 
@@ -43,7 +44,8 @@ const userLogin = async(req,res)=>{
 
     res.status(200).json({
         msg: "Login Success",
-        token
+        token,
+        "userId":  user._id,
     });
         
         
@@ -54,4 +56,17 @@ const userLogin = async(req,res)=>{
    
     }
 }
-module.exports = {userRegistration,userLogin}
+
+const addToCart = async(req,res)=>{
+    try {
+        let result = await Cart.insertOne(req.body);
+        if(result){
+            res.status(200).json({msg:"Product added in cart",flag:1})
+        }
+    } catch (error) {
+        console.log(error);
+        
+        res.json(error)
+    }
+}
+module.exports = {userRegistration,userLogin,addToCart}

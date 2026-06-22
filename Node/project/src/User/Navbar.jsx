@@ -6,11 +6,11 @@ function Navbar() {
 
   const [logged,setLogged]= useState(false);
   const [user1,setUser1]=useState({})
-  const {islogged}= useSelector((state)=>state.users)
+  
   const dispatch = useDispatch();
 
   useEffect(()=>{
-        let userInfo = localStorage.getItem('loggedUser');
+        let userInfo = localStorage.getItem('loggedUesr');
         console.log(userInfo);
         
         if(userInfo){
@@ -20,13 +20,11 @@ function Navbar() {
             console.log(user1);
             
         }
-  },[islogged])
+  },[logged])
 
   const logout1 = ()=>{
-      localStorage.removeItem('loggedUser');
-      dispatch(clearMsg())
-      dispatch(logout())
-      console.log(islogged);
+      localStorage.removeItem('loggedUesr');
+      setLogged(false);
       
   }
 
@@ -41,11 +39,11 @@ function Navbar() {
         <li><a href="#categories" class="hover:text-blue-600">Categories</a></li>
         <li><a href="#catalog" class="hover:text-blue-600">Product Catalog</a></li>
         {
-           islogged==true ? 
+           logged==true ? 
              <><li>Welcome:{user1.username} <button onClick={logout1}>Logout</button></li>
             <NavLink class="hover:text-blue-600" to={'/cart'}><i class="fa-solid fa-cart-arrow-down"></i></NavLink>
              </>
-           : <li><NavLink class="hover:text-blue-600" to={'/registration'}>Registraion</NavLink></li>
+           : <li><NavLink class="hover:text-blue-600" to={'/login'}>Login</NavLink></li>
         }
        
       </ul>

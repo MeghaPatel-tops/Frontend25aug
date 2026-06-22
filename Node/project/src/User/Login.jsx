@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { userLogin, userRegistration,clearMsg } from '../Redux/User';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 function Login() {
@@ -25,8 +25,8 @@ function Login() {
        try {
             let res = await axios.post('http://localhost:3000/login',user);
             console.log(res.data);
-            localStorage.setItem('token',res.data.token)
-            navigate('/profile')
+            localStorage.setItem('loggedUesr',JSON.stringify(res.data))
+            navigate('/')
             if(res.data.error){
                 setError(res.data)
             }
@@ -78,14 +78,15 @@ function Login() {
 
     
       <button class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition" onClick={handleClick}>
-        Register
+        Login
       </button>
 
     </form>
 
     <p class="text-center text-gray-600 mt-4 text-sm">
-      Already have an account?
-      <a href="#" class="text-blue-600 font-medium hover:underline">Login</a>
+      Don't have an account? 
+      <NavLink to={'/registration'} class="text-blue-600 font-medium hover:underline">Register</NavLink>
+    
     </p>
 
   </div>

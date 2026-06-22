@@ -6,13 +6,11 @@ function UserProfile() {
 
     const checkAuth = async () => {
         try {
-            let token = localStorage.getItem('token');
-            console.log(token);
-            
-
+            let UserLogged = JSON.parse(localStorage.getItem('loggedUesr'));
+           
             let res = await axios.get('http://localhost:3000/profile', {
                 headers: {
-                    Authorization: `Bearer ${token}`
+                    Authorization: `Bearer ${UserLogged.token}`
                 }
             })
             console.log(res);
