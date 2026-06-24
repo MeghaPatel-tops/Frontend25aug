@@ -1,5 +1,5 @@
 const express = require('express');
-const { userRegistration, userLogin, addToCart } = require('../Controller/UserController.js');
+const { userRegistration, userLogin, addToCart, ViewCart, UpdateCart, DeleteCart } = require('../Controller/UserController.js');
 const authMiddleware = require('../Middleware/authMiddleware.js');
 const router = express.Router();
 
@@ -32,4 +32,18 @@ router.post('/addtocart',authMiddleware,(req,res)=>{
       addToCart(req,res)
       
 })
+
+router.get('/cart/:id',authMiddleware,(req,res)=>{
+     ViewCart(req,res)
+})
+
+router.post('/updatecart/',authMiddleware,(req,res)=>{
+     UpdateCart(req,res)
+})
+
+router.post('/deletecart/',authMiddleware,(req,res)=>{
+    DeleteCart(req,res)
+})
+
+
 module.exports= router

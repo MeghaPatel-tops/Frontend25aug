@@ -8,9 +8,12 @@ import { db } from '../Firebase/firebase';
 
 
 function Viewcart() {
+   let userInfo = JSON.parse(localStorage.getItem('loggedUesr'));
   const [userAuth,setUserAuth]=useState({})
     const dispatch = useDispatch()
-    const {cartError,cartData,cartMsg} = useSelector((state)=>state.cart)
+    const [cartData,setCartData]=useState([])
+    const [cartMsg,setCartMsg]=useState("")
+    const {cartError} = useSelector((state)=>state.cart)
     const [total,setTotal] = useState(0);
     const [q,setQ] = useState(0)
 //=================================Pay============================
@@ -79,37 +82,68 @@ function Viewcart() {
     rzp.open();
   };
 //========================
-    const updateQty= (cartid,qty)=>{
+    const updateQty= async(cartid,qty)=>{
         console.log(cartid);
         console.log(qty);
-
-        if(qty == 0){
-             dispatch(deleteCartData(cartid))
+        try {
+             setQ(q+1)
+           let res = await axios.post('http://localhost:3000/updatecart/',{
+               qty:qty,
+               cartid:cartid
+           }, {
+                headers: {
+                    Authorization: `Bearer ${userInfo.token}`
+                }
+            })
+           
+        } catch (error) {
+          
         }
-        if(qty >= 1){
-            let data = {qty:qty}
-            dispatch(updatecartData({cartid:cartid,data}))
-        }
-        setQ(q+1)
         
     }
 
-    useEffect(()=>{
-          let userInfo = localStorage.getItem('loggedUser');
+    const deleteCartData = async(cartid)=>{
         
-        if(userInfo){
-            userInfo = JSON.parse(userInfo)
-            console.log(userInfo);
-            setUserAuth(userInfo)
-            dispatch(viewCartData(userInfo.id))
-        }    
-      
-    },[dispatch,cartMsg,q])
+        try {
+             setQ(q+1)
+           let res = await axios.post('http://localhost:3000/deletecart/',{
+              
+               cartid:cartid
+           }, {
+                headers: {
+                    Authorization: `Bearer ${userInfo.token}`
+                }
+            })
+           
+        } catch (error) {
+            console.log(error);
+            
+        }
+    }
+    const getCartData=async()=>{
+        try {
+   
+           let res = await axios.get('http://localhost:3000/cart/'+userInfo.userId, {
+                headers: {
+                    Authorization: `Bearer ${userInfo.token}`
+                }
+            })
+            console.log(res.data);
+            setCartData(res.data)
+        } catch (error) {
+             console.log(error);
+             
+        }
+    }
+
+    useEffect(()=>{
+          getCartData();
+    },[q])
 
     useEffect(()=>{
           if(cartData){
             let total1 = cartData.reduce((sum,index,i)=>{
-                  sum += (index.product.price * index.qty);
+                  sum += (index.pid.price * index.qty);
                  
                   return sum
             },0);
@@ -145,33 +179,34 @@ function Viewcart() {
             <tr class="border-t">
         <td class="p-3 flex items-center gap-3">
           <img 
-            src={index.product.pimage} 
+            src={"http://localhost:3000/"+index.pid.pimage} 
             class="w-14 h-14 rounded"
           />
           <div>
-            <h2 class="font-semibold">{index.product.pname}</h2>
+            <h2 class="font-semibold">{index.pid.pname}</h2>
             <p class="text-sm text-gray-500">Size: L</p>
           </div>
         </td>
 
-        <td class="p-3 font-medium">{index.product.price}</td>
+        <td class="p-3 font-medium">{index.pid.price}</td>
 
         <td class="p-3">
           <input 
             type="number" 
             value={index.qty}
             class="w-16 border rounded px-2 py-1 outline-none focus:ring-2 focus:ring-blue-400"
+            min={1}
             onChange={(e)=>{
-                updateQty(index.id,e.target.value)
+                updateQty(index._id,e.target.value)
             }}
           />
         </td>
 
-        <td class="p-3 font-semibold">{index.product.price * index.qty}</td>
+        <td class="p-3 font-semibold">{index.pid.price * index.qty}</td>
 
         <td class="p-3 text-center">
           <button class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded" onClick={()=>{
-              dispatch(deleteCartData(index.id))
+              deleteCartData(index._id)
           }}>
             Remove
           </button>

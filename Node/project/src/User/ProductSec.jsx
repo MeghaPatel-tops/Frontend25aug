@@ -77,7 +77,7 @@ function ProductSec() {
 
   useEffect(()=>{
     let loogedUser = JSON.parse(localStorage.getItem('loggedUesr'))
-     
+     setCUser(loogedUser)
     getProductData()
   },[])
 

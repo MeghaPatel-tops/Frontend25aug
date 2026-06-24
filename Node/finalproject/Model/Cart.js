@@ -3,7 +3,7 @@ const { Schema, default: mongoose } = require("mongoose");
 const CartSchema = new Schema({
     pid:{
          type: mongoose.Schema.Types.ObjectId,
-         ref:"Products",
+         ref:"Product",
         required:true,
     },
     uid:{
