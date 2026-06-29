@@ -16,22 +16,29 @@ function Viewcart() {
     const {cartError} = useSelector((state)=>state.cart)
     const [total,setTotal] = useState(0);
     const [q,setQ] = useState(0)
+    const [pid,setpid]=useState([])
+
+   
+    
 //=================================Pay============================
   const handlePayment = async () => {
-
-    // Create order from backend
-    const res = await axios.post("http://localhost:5000/create-order");
+    console.log(userInfo.userId);
+    console.log(total);
+    console.log(pid);
+    const res = await axios.post("http://localhost:3000/create-order",{total:total,uid:userInfo.userId,pid:pid}, {
+                 headers: {
+                    Authorization: `Bearer ${userInfo.token}`
+                }
+              });
 
     const order = res.data;
-
-    order['userid']=userAuth.id
-
-    const docRef = collection(db,'order')
-    const add = await addDoc(docRef,order)
+    console.log(order);
+    
+    
 
     const options = {
-      key: "rzp_id",
-      amount: order.amount,
+      key: "",
+      amount: order.total,
       currency: order.currency,
       name: "My Shop",
       description: "Test Transaction",
@@ -39,30 +46,20 @@ function Viewcart() {
 
       handler: async function (response) {
 
+        let payObj={rzp_pay_id:response.razorpay_payment_id,orderid:order.order.id,status:"success",uid:userInfo.userId };
+        console.log(payObj);
+        
+            const res = await axios.post("http://localhost:3000/payments",payObj, {
+                 headers: {
+                    Authorization: `Bearer ${userInfo.token}`
+                }
+              });
+        
         console.log("Payment Success");
 
-        console.log(response);
-        response['userid']=userAuth.id
-          const docRef1 = collection(db,'payments')
-         const add1 = await addDoc(docRef1,response)
+          console.log();
 
-          const cartRef = collection(db, "cart");
-
-        // query
-        const q = query(cartRef, where("userid", "==", userAuth.userid));
-
-        // get matched docs
-        const querySnapshot = await getDocs(q);
-
-        // delete all docs
-        querySnapshot.forEach(async (item) => {
-
-            await deleteDoc(doc(db, "cart", item.id));
-
-        });
-
-        console.log("Cart Removed");
-
+          
         alert("Payment Successful");
       },
 
@@ -141,14 +138,16 @@ function Viewcart() {
     },[q])
 
     useEffect(()=>{
+         let pidArray =[];
           if(cartData){
             let total1 = cartData.reduce((sum,index,i)=>{
                   sum += (index.pid.price * index.qty);
-                 
+                  pidArray.push(index.pid._id)
                   return sum
             },0);
 
            setTotal(total1)
+           setpid(pidArray)
            
         }
     },[cartData,cartMsg])

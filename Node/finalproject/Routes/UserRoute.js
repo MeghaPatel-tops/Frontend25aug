@@ -1,5 +1,5 @@
 const express = require('express');
-const { userRegistration, userLogin, addToCart, ViewCart, UpdateCart, DeleteCart } = require('../Controller/UserController.js');
+const { userRegistration, userLogin, addToCart, ViewCart, UpdateCart, DeleteCart, createOrder, createPayment } = require('../Controller/UserController.js');
 const authMiddleware = require('../Middleware/authMiddleware.js');
 const router = express.Router();
 
@@ -43,6 +43,14 @@ router.post('/updatecart/',authMiddleware,(req,res)=>{
 
 router.post('/deletecart/',authMiddleware,(req,res)=>{
     DeleteCart(req,res)
+})
+
+router.post('/create-order/',authMiddleware,(req,res)=>{
+    createOrder(req,res);
+})
+
+router.post('/payments/',authMiddleware,(req,res)=>{
+    createPayment(req,res);
 })
 
 

@@ -1,6 +1,8 @@
 const Cart = require("../Model/Cart");
+const Orders = require("../Model/Orders");
 const Users = require("../Model/Users")
 const jwt = require("jsonwebtoken");
+const razorpay = require('./razorpay')
 
 const userRegistration = async(req,res,data,err)=>{
     try {
@@ -127,4 +129,52 @@ const DeleteCart = async(req,res)=>{
         res.status(500).json(error)
     }
 }
-module.exports = {userRegistration,userLogin,addToCart,ViewCart,UpdateCart,DeleteCart}
+
+const createOrder= async (req, res) => {
+    try {
+        const { total } = req.body;
+
+        const options = {
+            amount: total * 100, // Convert ₹ to paise
+            currency: "INR",
+            receipt: `receipt_${Date.now()}`,
+            notes: {
+                purpose: "Travel Booking"
+            }
+        };
+
+        const order = await razorpay.orders.create(options);
+        const dbOrder = await Orders.insertOne({...options,uid:req.body.uid,pid:req.body.pid,rzp_orderId:order.id,status:"pending"})
+
+        res.status(200).json({
+            success: true,
+            order
+        });
+
+    } catch (err) {
+        console.log(err);
+
+        res.status(500).json({
+            success: false,
+            message: "Unable to create order"
+        });
+    }
+}
+
+const createPayment = async(req,res)=>{
+    try {
+        console.log(req);
+        
+        let result1 = await Orders.updateOne({rzp_orderId:req.body.orderid},{status:"Done",rzp_payment_id:req.body.rzp_pay_id})
+
+        console.log(result1);
+        
+       await Cart.deleteMany({uid:req.body.uid});
+        res.json("Done")
+    } catch (error) {
+        console.log(error);
+        
+        res.status(500).json(error)
+    }
+}
+module.exports = {userRegistration,userLogin,addToCart,ViewCart,UpdateCart,DeleteCart,createOrder,createPayment}
